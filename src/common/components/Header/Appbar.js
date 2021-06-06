@@ -29,6 +29,7 @@ const useStyles = makeStyles((theme) => ({
     maxHeight: theme.spacing(3.2),
     marginLeft: 0,
     width: "80%",
+    borderRadius: theme.shape.borderRadius / 2,
     [theme.breakpoints.up('sm')]: {
       marginLeft: theme.spacing(3),
       width: "40%",
@@ -43,7 +44,7 @@ const useStyles = makeStyles((theme) => ({
     },
   },
   inputRoot: {
-    width: "100%"
+    width: "100%",
   },
   inputInput: {
     padding: theme.spacing(0.5, 2),

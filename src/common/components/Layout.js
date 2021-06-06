@@ -1,15 +1,25 @@
 import React from 'react'
 import Header from "./Header";
-import {useRouter} from "next/router";
 import Footer from "./Footer";
+import {makeStyles} from "@material-ui/styles";
+import {Divider} from "@material-ui/core";
+
+const useStyles = makeStyles(theme => ({
+  root: {
+    backgroundColor: theme.palette.grey[300],
+    [theme.breakpoints.down('md')]: {
+      paddingTop: theme.spacing(6),
+    },
+  },
+}))
 
 const Layout = ({children}) => {
-  const router = useRouter()
+  const classes = useStyles()
   return (
     <React.Fragment>
-      {router.pathname !== "/login" && <Header/>}
-      {/*{displayNavigation && device === devices.DESKTOP && <DesktopNav/>}*/}
-      <div>{children}</div>
+      <Header/>
+      <div className={classes.root}>{children}</div>
+      <Divider/>
       <Footer/>
     </React.Fragment>
   )
