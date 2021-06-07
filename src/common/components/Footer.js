@@ -35,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(2),
     textAlign: 'justify',
     backgroundColor: theme.palette.grey[300],
+    [theme.breakpoints.down("xs")]: {
+      padding: theme.spacing(1),
+      fontSize: 14,
+    }
   },
 }));
 
