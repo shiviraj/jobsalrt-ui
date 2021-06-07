@@ -7,7 +7,7 @@ import PostCounts from "./components/PostCounts";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    margin: theme.spacing(4),
+    padding: theme.spacing(4),
   },
   table: {
     minWidth: 700,

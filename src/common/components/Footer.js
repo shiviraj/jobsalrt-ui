@@ -34,6 +34,7 @@ const useStyles = makeStyles((theme) => ({
   text: {
     padding: theme.spacing(2),
     textAlign: 'justify',
+    backgroundColor: theme.palette.grey[300],
   },
 }));
 

@@ -16,6 +16,7 @@
     "clsx": "^1.1.1",
     "express": "^4.17.1",
     "http-proxy-middleware": "^2.0.0",
+    "moment": "^2.29.1",
     "next": "10.2.0",
     "notistack": "^1.0.9",
     "prop-types": "^15.7.2",

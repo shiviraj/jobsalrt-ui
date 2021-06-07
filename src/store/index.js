@@ -3,7 +3,7 @@ import {install} from 'redux-loop'
 import {createReducerManager} from './reducer'
 import userReducer from "../modules/user/reducer";
 import postsReducer from "../modules/posts/reducer";
-import postReducer from "../modules/editPost/reducer";
+import postReducer from "../modules/post/reducer";
 
 const staticReducers = {
   user: userReducer,
