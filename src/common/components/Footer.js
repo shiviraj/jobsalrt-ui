@@ -1,7 +1,8 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
-import {Fab, Grid, Link, Paper, Typography, useScrollTrigger, Zoom} from '@material-ui/core';
+import Link from "next/link"
+import {Fab, Grid, Paper, Typography, useScrollTrigger, Zoom} from '@material-ui/core';
 import {KeyboardArrowUp} from '@material-ui/icons';
 
 const useStyles = makeStyles((theme) => ({
@@ -28,7 +29,13 @@ const useStyles = makeStyles((theme) => ({
       color: theme.palette.grey['300'],
       marginLeft: theme.spacing(3),
       padding: theme.spacing(1) / 5,
-      width: 'auto',
+      textDecoration: "none",
+      display: "inline-block",
+      width: theme.spacing(16),
+      fontFamily: "Roboto, Helvetica, Arial, sans-serif",
+    },
+    '& a:hover': {
+      textDecoration: "underLine",
     },
   },
   text: {
@@ -93,48 +100,25 @@ const Footer = (props) => {
         keep visiting our site for fresh content. JobsAlrt is trying to bring
         innovative features for our users, like use of filters to find jobs
         easily, alerts on your mobile for a particular job and many more. Hope
-        you will find JobsAlrt's efforts useful and will keep supporting us.{' '}
-        <span role="img" aria-label="smile">
-          🙂
-        </span>
+        you will find JobsAlrt's efforts useful and will keep supporting us.
+        <span role="img" aria-label="smile">🙂</span>
       </Typography>
       <div className={classes.gridContainer}>
         <Grid container justify="center" spacing={4}>
           <Grid item xs={12} md={3}>
             <Paper className={classes.paper}>
               <Typography variant="h3">Important Links</Typography>
-              <Link href="/page/disclaimer" color="primary">
-                Disclaimer
-              </Link>
-              <Link
-                href="/page/terms-of-service"
-                color="primary"
-              >
-                Terms of Service
-              </Link>
-              <Link
-                href="/page/privacy-policy"
-                color="primary"
-              >
-                Privacy Policy
-              </Link>
+              <Link href="/page/disclaimer">Disclaimer</Link>
+              <Link href="/page/terms-of-service">Terms of Service</Link>
+              <Link href="/page/privacy-policy">Privacy Policy</Link>
             </Paper>
           </Grid>
           <Grid item xs={12} md={3}>
             <Paper className={classes.paper}>
               <Typography variant="h3">Navigation</Typography>
-              <Link href="/page/about-us" color="primary">
-                About Us
-              </Link>
-              <Link href="/page/contact-us" color="primary">
-                Contact Us
-              </Link>
-              <Link
-                href="/page/share-feedback"
-                color="primary"
-              >
-                Share Feedback
-              </Link>
+              <Link href="/page/about-us">About Us</Link>
+              <Link href="/page/contact-us">Contact Us</Link>
+              <Link href="/page/share-feedback">Share Feedback</Link>
             </Paper>
           </Grid>
           <Grid item xs={12} md={3}>

@@ -8,8 +8,6 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexWrap: "wrap",
     justifyContent: "space-between",
-    padding: theme.spacing(1),
-    backgroundColor: theme.palette.grey[300]
   },
 }));
 

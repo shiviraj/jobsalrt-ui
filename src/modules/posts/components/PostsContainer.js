@@ -6,8 +6,17 @@ import AllPosts from "./AllPosts";
 import PostsFooter from "./PostsFooter";
 
 const useStyles = makeStyles(theme => ({
-  root: {width: '81.5%', backgroundColor: theme.palette.common.white, paddingTop: theme.spacing(1)},
-  postContainer: {display: "flex", flexWrap: "wrap", justifyContent: 'center',},
+  root: {
+    width: '81.5%',
+    backgroundColor: theme.palette.common.white,
+    paddingTop: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
+      width: "100%"
+    },
+  },
+  postContainer: {
+    display: "flex", flexWrap: "wrap", justifyContent: 'center',
+  },
   divider: {margin: theme.spacing(1, 0)}
 }));
 
@@ -17,12 +26,12 @@ const PostsContainer = (props) => {
 
   return <div className={classes.root}>
     <PostsHeader currentPage={currentPage} totalPosts={totalPosts} sortOrder={sortOrder}
-                 sortBy={sortBy} getPosts={getPosts} postsCount={postsCount}
+                 sortBy={sortBy} getPosts={getPosts}
     />
     <Divider className={classes.divider}/>
 
     <div className={classes.postContainer}>
-      <AllPosts posts={posts} loading={loading} getPosts={getPosts} postsCount={postsCount}/>
+      <AllPosts posts={posts} loading={loading}/>
     </div>
 
     <Divider className={classes.divider}/>

@@ -1,7 +1,7 @@
 import React from 'react';
-import moment from 'moment'
 import {Grid, Paper, Table, TableBody, TableContainer, Typography} from "@material-ui/core";
 import {StyledTableCell, StyledTableRow, useStyles} from "./StyledRow";
+import {formatDate} from "../../../utils/formatDate";
 
 const CustomizedTable = ({details}) => {
   const classes = useStyles();
@@ -17,7 +17,7 @@ const CustomizedTable = ({details}) => {
             </StyledTableRow>
             {details.lastDate && <StyledTableRow>
               <StyledTableCell>Last Date</StyledTableCell>
-              <StyledTableCell>{moment(details.lastDate).format("MMM DD, YYYY")}</StyledTableCell>
+              <StyledTableCell>{formatDate(details.lastDate)}</StyledTableCell>
             </StyledTableRow>}
             {details.location && <StyledTableRow>
               <StyledTableCell>Location</StyledTableCell>

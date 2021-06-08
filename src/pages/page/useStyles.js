@@ -1,15 +1,7 @@
 import {makeStyles} from '@material-ui/styles';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    padding: theme.spacing(2),
-    backgroundColor: theme.palette.grey[300],
-    [theme.breakpoints.down('sm')]: {
-      padding: theme.spacing(0.8),
-    },
-  },
   paper: {
-    borderRadius: 0,
     backgroundColor: theme.palette.common.white,
     padding: theme.spacing(2),
     '& p': {

@@ -19,6 +19,8 @@ const useStyles = makeStyles({
   link: {
     padding: theme.spacing(1, 2),
     width: theme.spacing(14),
+    fontSize: 14,
+    fontFamily: "Roboto, Helvetica, Arial, sans-serif",
     borderRadius: 0,
     cursor: "pointer",
     "&:hover": {
@@ -36,12 +38,14 @@ const useStyles = makeStyles({
   linkHeader: {
     display: "flex",
     justifyContent: "space-between",
-    cursor: "default"
+    cursor: "default",
+    padding: theme.spacing(1, 2),
+    borderBottom: `1px solid ${theme.palette.grey[300]}`
   },
   mobileMenu: {
     display: 'block', [theme.breakpoints.up('md')]: {display: 'none'},
     "& > * > *": {
-      width: theme.spacing(28)
+      width: theme.spacing(28),
     }
   }
 });
@@ -51,9 +55,10 @@ const Menubar = ({openDrawer, setOpenDrawer}) => {
   const classes = useStyles();
 
   const NavLink = ({path, text}) => {
+    const {category} = useRouter().query
     const pathName = useRouter().pathname
     return <Link href={path}>
-      <div className={path === pathName ? `${classes.active} ${classes.link}` : classes.link}
+      <div className={path.includes(category) || path === pathName ? `${classes.active} ${classes.link}` : classes.link}
            onClick={() => setOpenDrawer(false)}
       >
         {text}
@@ -64,95 +69,27 @@ const Menubar = ({openDrawer, setOpenDrawer}) => {
   return (<div id="back-to-top-anchor">
     <div className={classes.desktopMenu}>
       <NavLink path="/" text="HOME"/>
-      <NavLink path="/posts" text="LATEST JOB"/>
-      <NavLink path="/l" text="ADMIT CARD"/>
-      <NavLink path="/p" text="RESULT"/>
-      <NavLink path="/p" text="ANSWER KEY"/>
-      <NavLink path="/p" text="SYLLABUS"/>
-      <NavLink path="/p" text="ADMISSION"/>
+      <NavLink path="/all-job/posts" text="ALL JOB"/>
+      <NavLink path="/latest-job/posts" text="LATEST JOB"/>
+      <NavLink path="/admit-card/posts" text="ADMIT CARD"/>
+      <NavLink path="/result/posts" text="RESULT"/>
+      <NavLink path="/answer-key/posts" text="ANSWER KEY"/>
+      <NavLink path="/admission/posts" text="ADMISSION"/>
     </div>
     <Drawer open={openDrawer} className={classes.mobileMenu} onClose={() => setOpenDrawer(false)}>
-      <div className={`${classes.link} ${classes.linkHeader}`}>
+      <div className={classes.linkHeader}>
         <Typography variant="subtitle1"><b>Jobs</b>Alrt</Typography>
         <IconButton size="small" onClick={() => setOpenDrawer(false)}><Close/></IconButton>
       </div>
       <NavLink path="/" text="HOME"/>
-      <NavLink path="/posts" text="LATEST JOB"/>
-      <NavLink path="/l" text="ADMIT CARD"/>
-      <NavLink path="/p" text="RESULT"/>
-      <NavLink path="/p" text="ANSWER KEY"/>
-      <NavLink path="/p" text="SYLLABUS"/>
-      <NavLink path="/p" text="ADMISSION"/>
+      <NavLink path="/all-job/posts" text="ALL JOB"/>
+      <NavLink path="/latest-job/posts" text="LATEST JOB"/>
+      <NavLink path="/admit-card/posts" text="ADMIT CARD"/>
+      <NavLink path="/result/posts" text="RESULT"/>
+      <NavLink path="/answer-key/posts" text="ANSWER KEY"/>
+      <NavLink path="/admission/posts" text="ADMISSION"/>
     </Drawer>
   </div>);
 }
 
 export default Menubar
-
-//
-// const useStyles = makeStyles({
-//   list: {
-//     width: 250,
-//   },
-//   fullList: {
-//     width: 'auto',
-//   },
-// });
-//
-// export default function TemporaryDrawer() {
-//   const classes = useStyles();
-//   const [state, setState] = React.useState({
-//     top: false,
-//     left: false,
-//     bottom: false,
-//     right: false,
-//   });
-//
-//   const toggleDrawer = (anchor, open) => (event) => {
-//     if (event.type === 'keydown' && (event.key === 'Tab' || event.key === 'Shift')) {
-//       return;
-//     }
-//
-//     setState({ ...state, [anchor]: open });
-//   };
-//
-//   const list = (anchor) => (
-//     <div
-//       className={clsx(classes.list, {
-//         [classes.fullList]: anchor === 'top' || anchor === 'bottom',
-//       })}
-//       role="presentation"
-//       onClick={toggleDrawer(anchor, false)}
-//       onKeyDown={toggleDrawer(anchor, false)}
-//     >
-//       <List>
-//         {['Inbox', 'Starred', 'Send email', 'Drafts'].map((text, index) => (
-//           <ListItem button key={text}>
-//             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-//             <ListItemText primary={text} />
-//           </ListItem>
-//         ))}
-//       </List>
-//       <Divider />
-//       <List>
-//         {['All mail', 'Trash', 'Spam'].map((text, index) => (
-//           <ListItem button key={text}>
-//             <ListItemIcon>{index % 2 === 0 ? <InboxIcon /> : <MailIcon />}</ListItemIcon>
-//             <ListItemText primary={text} />
-//           </ListItem>
-//         ))}
-//       </List>
-//     </div>
-//   );
-//
-//   return (
-//     <div>
-//         <React.Fragment>
-//           <Button onClick={toggleDrawer(anchor, true)}>{anchor}</Button>
-//           <Drawer anchor={anchor} open={state[anchor]} onClose={toggleDrawer(anchor, false)}>
-//             {list(anchor)}
-//           </Drawer>
-//         </React.Fragment>
-//     </div>
-//   );
-// }
