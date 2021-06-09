@@ -2,7 +2,7 @@ import {Typography} from "@material-ui/core";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
 import {Pagination} from "@material-ui/lab";
-import {isMobile} from "../../../utils/userAgent";
+import {isMobile} from "../../../../utils/userAgent";
 
 const useStyles = makeStyles(theme => ({
   paginationContainer: {

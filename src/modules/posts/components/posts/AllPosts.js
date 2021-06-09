@@ -1,7 +1,7 @@
 import React from "react";
 import {Grid, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-import PostSkeleton from "../../../common/components/PostSkeleton";
+import PostSkeleton from "../../../../common/components/PostSkeleton";
 import Post from "./Post";
 
 const useStyles = makeStyles(theme => ({

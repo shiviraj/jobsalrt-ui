@@ -22,7 +22,7 @@ const defaultState = () => ({
   errorMessage: null,
   data: [],
   search: "",
-  filters: {},
+  filters: {formType: [], location: [], qualification: []},
   currentPage: 1,
   totalPage: 1,
   totalPosts: 0,

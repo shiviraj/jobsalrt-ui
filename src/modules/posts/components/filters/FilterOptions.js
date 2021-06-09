@@ -2,7 +2,7 @@ import React from 'react'
 import {Accordion, AccordionDetails, AccordionSummary, Chip, FormControl, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 import {ExpandMore} from "@material-ui/icons";
-import FormCheckBox from "../../../common/components/FormCheckBox";
+import FormCheckBox from "../../../../common/components/FormCheckBox";
 
 const useStyles = makeStyles(theme => ({
   title: {textTransform: "capitalize"},
@@ -19,14 +19,20 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
+const options = [
+  {name: "Online", value: "ONLINE"},
+  {name: "Offline", value: "OFFLINE"}
+]
 
-const FilterOptions = ({options, filters = [], onChange, title}) => {
+const FilterOptions = ({filters, setFilters, title}) => {
   const classes = useStyles()
+  const {formType} = filters
+  const handleClearAll = () => setFilters({...filters, formType: []})
 
-  const handleClearAll = () => {
-    filters.forEach((value) => {
-      onChange(value)
-    })
+  const handleChange = (value) => {
+    if (formType.includes(value)) filters.formType = formType.filter(type => type !== value)
+    else filters.formType.push(value)
+    setFilters({...filters})
   }
 
   return <Accordion square defaultExpanded className={classes.accordion}>
@@ -35,12 +41,12 @@ const FilterOptions = ({options, filters = [], onChange, title}) => {
     </AccordionSummary>
     <AccordionDetails>
       <FormControl component="fieldset">
-        {filters && filters.length !== 0 &&
+        {formType && formType.length !== 0 &&
         <Chip label="&#x2715; &nbsp; Clear All" size="small" className={classes.chip} onClick={handleClearAll}/>}
         {
           options.map((option, index) => {
             return <FormCheckBox key={`${option.name}_${index}`} value={option.value} label={option.name}
-                                 checked={filters.includes(option.value)} onChange={onChange}/>
+                                 checked={formType.includes(option.value)} onChange={handleChange}/>
           })
         }
       </FormControl>

@@ -11,9 +11,8 @@ const posts = (host = '') => {
       const options = {data: {filters, sortBy, sortOrder, search}, method: METHODS.POST}
       return axios.fetch(`${host}/api/posts/page/${currentPage}`, options)
     },
-    addNewPost(data) {
-      const options = {data, method: METHODS.POST}
-      return axios.fetch(`${host}/api/posts`, options)
+    getOptions(key, text) {
+      return axios.fetch(`${host}/api/posts/options?${key}=${text}`)
     },
     deletePost(url) {
       const options = {method: METHODS.DELETE}

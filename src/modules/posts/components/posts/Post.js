@@ -1,10 +1,10 @@
 import React, {useState} from 'react'
 import {Card, CardContent, Typography} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
-import {truncate} from "../../../utils/utils";
-import {redirectTo} from "../../../utils/routing";
-import {isMobile} from "../../../utils/userAgent";
-import {formatDate} from "../../../utils/formatDate";
+import {truncate} from "../../../../utils/utils";
+import {redirectTo} from "../../../../utils/routing";
+import {isMobile} from "../../../../utils/userAgent";
+import {formatDate} from "../../../../utils/formatDate";
 
 const useStyles = makeStyles(theme => ({
   root: {

@@ -12,7 +12,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Posts = (props) => {
-  const {filters, postsCount, getPosts, search} = props
+  const {filters, postsCount, getPosts, search, setFilters} = props
   const classes = useStyles()
 
   useEffect(() => {
@@ -22,7 +22,7 @@ const Posts = (props) => {
 
   return <div className={classes.root}>
     <PostsContainer {...props}/>
-    <FilterContainer filters={filters} getPosts={getPosts} postsCount={postsCount}/>
+    <FilterContainer filters={filters} setFilters={setFilters}/>
   </div>
 }
 
