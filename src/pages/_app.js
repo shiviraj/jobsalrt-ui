@@ -7,7 +7,6 @@ import HeadTag from "../common/components/HeadTag";
 import Layout from "../common/components/Layout";
 import {Router} from "next/router";
 import {onRouteChange} from "../utils/routing";
-import ToastWrapper from "../common/components/ToastWrapper";
 
 const MyApp = ({Component, pageProps, ...rest}) => {
   useEffect(() => {
@@ -17,11 +16,9 @@ const MyApp = ({Component, pageProps, ...rest}) => {
   return <Provider store={store}>
     <HeadTag/>
     <ThemeProvider theme={theme}>
-      <ToastWrapper>
-        <Layout>
-          <Component {...pageProps} />
-        </Layout>
-      </ToastWrapper>
+      <Layout>
+        <Component {...pageProps} />
+      </Layout>
     </ThemeProvider>
   </Provider>
 }

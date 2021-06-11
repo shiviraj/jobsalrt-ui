@@ -3,12 +3,13 @@ import {getStorage} from "../utils/storage";
 import {StorageKeys} from "../constants/storage";
 import {handleUnauthorized} from "../utils/auth";
 import {decryptResponse, encryptRequest, iv} from "./crypto";
+import {generateRandomString} from "../utils/string";
 
 export const defaultHeaders = {'Content-Type': 'application/json'}
 
 const init = () => {
   const auth = getStorage(StorageKeys.AUTH)
-  const authToken = auth ? auth.token : "defaultsecretkeydefaultsecretkey"
+  const authToken = auth ? auth.token : generateRandomString(40)
   const encryptionDisabled = process.env.DISABLE_ENCRYPTION || false;
   const headers = encryptionDisabled ? {'disable-encryption': encryptionDisabled} : {}
   return {...defaultHeaders, ...headers, iv: iv.toString("hex"), authorization: authToken}

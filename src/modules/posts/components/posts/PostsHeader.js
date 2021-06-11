@@ -8,7 +8,7 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     flexWrap: "wrap",
     alignItems: "center",
-    margin: theme.spacing(0, 0, -1, 2),
+    margin: theme.spacing(1, 0, 0, 2),
   },
   title: {
     textTransform: "capitalize"
@@ -32,7 +32,6 @@ const PostsHeader = ({currentPage, totalPosts, getPosts, sortBy, sortOrder}) => 
         (Showing {start} - {end} posts of {totalPosts} posts)
       </Typography>
     </div>
-    {/*<SortBy getPosts={getPosts} sortBy={sortBy} sortOrder={sortOrder}/>*/}
   </React.Fragment>
 }
 

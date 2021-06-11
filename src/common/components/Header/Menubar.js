@@ -69,12 +69,12 @@ const Menubar = ({openDrawer, setOpenDrawer}) => {
   return (<div id="back-to-top-anchor">
     <div className={classes.desktopMenu}>
       <NavLink path="/" text="HOME"/>
-      <NavLink path="/all-job/posts" text="ALL JOB"/>
-      <NavLink path="/latest-job/posts" text="LATEST JOB"/>
-      <NavLink path="/admit-card/posts" text="ADMIT CARD"/>
-      <NavLink path="/result/posts" text="RESULT"/>
-      <NavLink path="/answer-key/posts" text="ANSWER KEY"/>
-      <NavLink path="/admission/posts" text="ADMISSION"/>
+      <NavLink path="/all-jobs/posts" text="ALL JOB"/>
+      <NavLink path="/latest-jobs/posts" text="LATEST JOB"/>
+      <NavLink path="/admit-cards/posts" text="ADMIT CARD"/>
+      <NavLink path="/results/posts" text="RESULT"/>
+      <NavLink path="/answer-keys/posts" text="ANSWER KEY"/>
+      <NavLink path="/admissions/posts" text="ADMISSION"/>
     </div>
     <Drawer open={openDrawer} className={classes.mobileMenu} onClose={() => setOpenDrawer(false)}>
       <div className={classes.linkHeader}>
@@ -82,12 +82,13 @@ const Menubar = ({openDrawer, setOpenDrawer}) => {
         <IconButton size="small" onClick={() => setOpenDrawer(false)}><Close/></IconButton>
       </div>
       <NavLink path="/" text="HOME"/>
-      <NavLink path="/all-job/posts" text="ALL JOB"/>
-      <NavLink path="/latest-job/posts" text="LATEST JOB"/>
-      <NavLink path="/admit-card/posts" text="ADMIT CARD"/>
-      <NavLink path="/result/posts" text="RESULT"/>
-      <NavLink path="/answer-key/posts" text="ANSWER KEY"/>
-      <NavLink path="/admission/posts" text="ADMISSION"/>
+      <NavLink path="/all-jobs/posts" text="ALL JOB"/>
+      <NavLink path="/latest-jobs/posts" text="LATEST JOB"/>
+      <NavLink path="/admit-cards/posts" text="ADMIT CARD"/>
+      <NavLink path="/results/posts" text="RESULT"/>
+      <NavLink path="/syllabus/posts" text="SYLLABUS"/>
+      <NavLink path="/answer-keys/posts" text="ANSWER KEY"/>
+      <NavLink path="/admissions/posts" text="ADMISSION"/>
     </Drawer>
   </div>);
 }

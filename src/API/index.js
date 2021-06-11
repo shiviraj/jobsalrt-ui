@@ -1,5 +1,5 @@
 import posts from "./modules/posts";
-import post from "./modules/editPost";
+import post from "./modules/post";
 
 const bffUrl = process.env.JOBSALRT_BFF_URL;
 
