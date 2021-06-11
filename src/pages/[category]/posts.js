@@ -1,6 +1,6 @@
 import {connect} from 'react-redux'
 import Posts from "../../modules/posts";
-import {getPosts, postsCount, setFilters} from "../../modules/posts/actions";
+import {getPosts, postsCount, setFilters, setType} from "../../modules/posts/actions";
 
 export const mapStateToProps = state => {
   return {
@@ -22,7 +22,8 @@ export const mapDispatchToProps = dispatch => {
   return {
     postsCount: (payload) => dispatch(postsCount(payload)),
     getPosts: (payload) => dispatch(getPosts(payload)),
-    setFilters: (payload) => dispatch(setFilters(payload))
+    setFilters: (payload) => dispatch(setFilters(payload)),
+    setType: (payload) => dispatch(setType(payload))
   }
 }
 

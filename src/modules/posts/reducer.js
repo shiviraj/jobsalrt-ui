@@ -11,7 +11,8 @@ import {
   postsCountError,
   postsCountSuccess,
   SET_FILTERS,
-  SET_SEARCH
+  SET_SEARCH,
+  SET_TYPE
 } from "./actions";
 import API from "../../API";
 import {SORT} from "../../constants/sort";
@@ -21,8 +22,8 @@ const defaultState = () => ({
   error: false,
   errorMessage: null,
   data: [],
-  search: "",
-  filters: {formType: [], location: [], qualification: []},
+  filters: {formType: [], location: [], qualification: [], company: []},
+  type: "all-job",
   currentPage: 1,
   totalPage: 1,
   totalPosts: 0,
@@ -37,7 +38,7 @@ const userReducer = (state = defaultState(), action) => {
       return loop(
         state,
         Cmd.run(API.posts.postsCount, {
-          args: [state.search, state.filters, state.sortBy, state.sortOrder],
+          args: [state.filters, state.sortBy, state.sortOrder, state.type, state.search],
           successActionCreator: postsCountSuccess,
           failActionCreator: postsCountError
         })
@@ -56,7 +57,7 @@ const userReducer = (state = defaultState(), action) => {
       state = {...state, loading: true, error: false, errorMessage: null, data: [], ...action.payload}
       return loop(state,
         Cmd.run(API.posts.getPosts, {
-          args: [state.currentPage, state.filters, state.sortBy, state.sortOrder, state.search],
+          args: [state.filters, state.sortBy, state.sortOrder, state.type, state.search, state.currentPage],
           successActionCreator: getPostsSuccess,
           failActionCreator: getPostsError
         })
@@ -77,6 +78,10 @@ const userReducer = (state = defaultState(), action) => {
 
     case SET_FILTERS: {
       return {...state, filters: action.payload}
+    }
+
+    case SET_TYPE: {
+      return {...state, type: action.payload}
     }
 
     default:

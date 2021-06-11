@@ -67,7 +67,7 @@ const FilterRange = ({title, values, filters, setFilters, keyName}) => {
     return value === initialState[1] ? `${lastValue}+` : numToDisplay;
   };
 
-  return <Accordion square defaultExpanded className={classes.accordion}>
+  return <Accordion square className={classes.accordion}>
     <AccordionSummary expandIcon={<ExpandMore/>}>
       <Typography variant="h6" className={classes.title}>{title}</Typography>
     </AccordionSummary>

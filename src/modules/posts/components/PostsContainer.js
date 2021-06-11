@@ -7,7 +7,7 @@ import PostsFooter from "./posts/PostsFooter";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '80%',
+    width: '100%',
     backgroundColor: theme.palette.common.white,
     paddingTop: theme.spacing(1),
     [theme.breakpoints.down('sm')]: {

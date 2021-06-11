@@ -1,7 +1,6 @@
 import {Typography} from "@material-ui/core";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import SortBy from "./SortBy";
 import {useRouter} from "next/router";
 
 const useStyles = makeStyles(theme => ({
@@ -33,7 +32,7 @@ const PostsHeader = ({currentPage, totalPosts, getPosts, sortBy, sortOrder}) => 
         (Showing {start} - {end} posts of {totalPosts} posts)
       </Typography>
     </div>
-    <SortBy getPosts={getPosts} sortBy={sortBy} sortOrder={sortOrder}/>
+    {/*<SortBy getPosts={getPosts} sortBy={sortBy} sortOrder={sortOrder}/>*/}
   </React.Fragment>
 }
 

@@ -8,6 +8,7 @@ export const GET_POSTS_SUCCESS = NAMESPACE + 'GET_POSTS_SUCCESS'
 export const GET_POSTS_ERROR = NAMESPACE + 'GET_POSTS_ERROR'
 export const SET_SEARCH = NAMESPACE + 'SET_SEARCH'
 export const SET_FILTERS = NAMESPACE + 'SET_FILTERS'
+export const SET_TYPE = NAMESPACE + 'SET_TYPE'
 
 const postsCount = (payload) => ({
   type: POSTS_COUNT,
@@ -50,4 +51,19 @@ const setFilters = (filters) => ({
   payload: filters
 })
 
-export {postsCount, postsCountSuccess, postsCountError, getPosts, getPostsSuccess, getPostsError, setSearch, setFilters}
+const setType = (type) => ({
+  type: SET_TYPE,
+  payload: type
+})
+
+export {
+  postsCount,
+  postsCountSuccess,
+  postsCountError,
+  getPosts,
+  getPostsSuccess,
+  getPostsError,
+  setSearch,
+  setFilters,
+  setType
+}

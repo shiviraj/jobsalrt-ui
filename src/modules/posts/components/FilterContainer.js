@@ -8,7 +8,7 @@ import SelectedOptions from "./filters/SelectedOptions";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: '19.5%',
+    width: "100%",
     backgroundColor: theme.palette.common.white,
     paddingTop: theme.spacing(1),
   },
@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
 const FilterContainer = ({filters, setFilters}) => {
   const classes = useStyles()
 
-  const handleClearAll = () => setFilters({formType: [], location: [], qualification: []});
+  const handleClearAll = () => setFilters({formType: [], location: [], qualification: [], company: []});
 
   return <div className={classes.root}>
     <div className={classes.titleBar}>
@@ -43,6 +43,7 @@ const FilterContainer = ({filters, setFilters}) => {
                  setFilters={setFilters} keyName="ageLimit"/>
     <FilterInput title="Location" filters={filters} keyName="location" setFilters={setFilters}/>
     <FilterInput title="Education" filters={filters} keyName="qualification" setFilters={setFilters}/>
+    <FilterInput title="Organisation" filters={filters} keyName="company" setFilters={setFilters}/>
   </div>
 }
 

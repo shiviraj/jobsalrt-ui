@@ -1,10 +1,10 @@
 import React from "react";
-import {Button} from "@material-ui/core";
-import {Close} from "@material-ui/icons";
+import {Chip} from "@material-ui/core";
 import {makeStyles} from "@material-ui/core/styles";
 
 const useStyles = makeStyles(theme => ({
-  filter: {backgroundColor: theme.palette.grey[300], margin: theme.spacing(0.5), padding: theme.spacing(0.25, 0.5)},
+  container: {padding: theme.spacing(0, 1)},
+  filter: {margin: theme.spacing(0.25)},
 }));
 
 const SelectedOptions = ({filters, setFilters}) => {
@@ -21,43 +21,36 @@ const SelectedOptions = ({filters, setFilters}) => {
     setFilters({...filters})
   }
 
-  return <React.Fragment>
+  return <div className={classes.container}>
     {formType.length > 0 && formType.map((type) => {
-      return <Button variant="contained" size="small" key={type} onClick={() => handleRemove("formType", type)}
-                     className={classes.filter}>
-        <Close fontSize="small"/> {type}
-      </Button>
+      return <Chip variant="outlined" color="primary" size="small" label={type} className={classes.filter}
+                   onDelete={() => handleRemove("formType", type)}/>
     })}
     {
       vacancies &&
-      <Button variant="contained" size="small" onClick={() => handleRemove("vacancies")} className={classes.filter}>
-        <Close fontSize="small"/>
-        {vacancies[0] === 0 ? "min" : vacancies[0]} - {vacancies[1] > 5000 ? "5000+" : vacancies[1]}
-      </Button>
+      <Chip variant="outlined" size="small" onDelete={() => handleRemove("vacancies")} className={classes.filter}
+            label={`${vacancies[0] === 0 ? "min" : vacancies[0]} - ${vacancies[1] > 5000 ? "5000+" : vacancies[1]}`}
+            color="primary"/>
     }
     {
       ageLimit &&
-      <Button variant="contained" size="small" onClick={() => handleRemove("ageLimit")} className={classes.filter}>
-        <Close fontSize="small"/>
-        {ageLimit[0] === 14 ? "min" : ageLimit[0]} - {ageLimit[1] > 40 ? "40+" : ageLimit[1]}
-      </Button>
+      <Chip variant="outlined" size="small" onDelete={() => handleRemove("ageLimit")} className={classes.filter}
+            label={`${ageLimit[0] === 14 ? "min" : ageLimit[0]} - ${ageLimit[1] > 40 ? "40+" : ageLimit[1]}`}
+            color="primary"/>
     }
     {
       location && location.length > 0 && location.map(l =>
-        <Button variant="contained" size="small" onClick={() => handleRemove("location", l)} className={classes.filter}>
-          <Close fontSize="small"/> {l}
-        </Button>
+        <Chip variant="outlined" size="small" onDelete={() => handleRemove("location", l)} className={classes.filter}
+              label={l} color="primary"/>
       )
     }
     {
       qualification && qualification.length > 0 && qualification.map(q =>
-        <Button variant="contained" size="small" onClick={() => handleRemove("qualification", q)}
-                className={classes.filter}>
-          <Close fontSize="small"/> {q}
-        </Button>
+        <Chip variant="outlined" size="small" onDelete={() => handleRemove("qualification", q)}
+              className={classes.filter} label={q} color="primary"/>
       )
     }
-  </React.Fragment>
+  </div>
 };
 
 export default SelectedOptions
