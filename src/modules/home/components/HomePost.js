@@ -7,7 +7,7 @@ import {formatDate} from "../../../utils/formatDate";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    margin: theme.spacing(0.25),
+    width: theme.spacing(39),
     padding: theme.spacing(0.25),
     borderRadius: 0,
     height: theme.spacing(32),

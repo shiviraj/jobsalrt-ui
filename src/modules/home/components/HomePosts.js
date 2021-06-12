@@ -46,13 +46,15 @@ const useStyles = makeStyles(theme => ({
     },
   },
   post: {
-    minWidth: theme.spacing(40)
+    minWidth: theme.spacing(40),
+    padding: theme.spacing(0.25),
   }
 }))
 
 const HomePosts = ({posts, loading, width}) => {
   const classes = useStyles()
   const [index, setIndex] = useState(0)
+  const [maxIndex, setMaxIndex] = useState(0)
   const [widths, setWidths] = useState({container: width, item: 1})
   const [margin, setMargin] = useState(0)
   const postRef = createRef()
@@ -60,18 +62,20 @@ const HomePosts = ({posts, loading, width}) => {
   useEffect(() => {
     if (posts.length && postRef.current) {
       setWidths({container: width, item: postRef.current.offsetWidth})
+      const itemsInRow = width / postRef.current.offsetWidth;
+      setMaxIndex(Math.floor(posts.length / itemsInRow));
     }
-  }, [posts, width])
+  }, [posts, postRef])
 
   useEffect(() => {
-    const items = Math.floor(widths.container / widths.item)
-    setMargin(-items * widths.item * index)
+    const items = widths.container / widths.item
+    const margin = (maxIndex === index && maxIndex !== 0) ? (posts.length * widths.item) - width : (Math.floor(items * widths.item * index))
+    setMargin(-margin)
   }, [index])
 
   const handleBackward = () => setIndex(Math.max(index - 1, 0))
   const handleForward = () => {
-    const itemsInRow = widths.container / widths.item;
-    const maxIndex = Math.ceil(posts.length / itemsInRow);
+
     setIndex(Math.min(index + 1, maxIndex));
   }
 
@@ -95,11 +99,14 @@ const HomePosts = ({posts, loading, width}) => {
     </IconButton>}
     <div className={classes.posts} style={{marginLeft: margin}}>
       {
-        posts.map((post, index) => <div key={index} className={classes.post} ref={postRef}><HomePost post={post}/>
-        </div>)
+        posts.map((post, index) => {
+          return <div key={index} className={classes.post} ref={postRef}>
+            <HomePost post={post}/>
+          </div>;
+        })
       }
     </div>
-    {Math.ceil(posts.length / (widths.container / widths.item)) !== index &&
+    {maxIndex !== index &&
     <IconButton className={classes.forwardArrow} onClick={handleForward}>
       <ArrowForward fontSize="small"/>
     </IconButton>}
