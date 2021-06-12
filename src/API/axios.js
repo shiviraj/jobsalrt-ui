@@ -1,7 +1,6 @@
 import axios from "axios";
 import {getStorage} from "../utils/storage";
 import {StorageKeys} from "../constants/storage";
-import {handleUnauthorized} from "../utils/auth";
 import {decryptResponse, encryptRequest, iv} from "./crypto";
 import {generateRandomString} from "../utils/string";
 
@@ -25,9 +24,6 @@ const utils = {
             resolve(decryptResponse(res.data, headers))
           })
           .catch((error) => {
-            if (error.response && error.response.status === 403) {
-              return handleUnauthorized()
-            }
             reject(error)
           })
       }

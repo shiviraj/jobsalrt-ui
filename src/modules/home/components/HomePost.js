@@ -42,7 +42,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Post = ({post}) => {
+const HomePost = ({post}) => {
   const classes = useStyles()
 
   return <Card className={classes.root} onClick={() => redirectTo(`/post/${post.url}`)}>
@@ -60,4 +60,4 @@ const Post = ({post}) => {
   </Card>
 }
 
-export default Post
+export default HomePost

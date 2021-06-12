@@ -15,7 +15,6 @@ import {
   SET_TYPE
 } from "./actions";
 import API from "../../API";
-import {SORT} from "../../constants/sort";
 
 const defaultState = () => ({
   loading: false,
@@ -23,12 +22,10 @@ const defaultState = () => ({
   errorMessage: null,
   data: [],
   filters: {formType: [], location: [], qualification: [], company: []},
-  type: "all-job",
+  type: "all-jobs",
   currentPage: 1,
   totalPage: 1,
   totalPosts: 0,
-  sortBy: SORT.sortBy.CREATED_AT,
-  sortOrder: SORT.sortOrder.DESC,
 })
 
 const userReducer = (state = defaultState(), action) => {
