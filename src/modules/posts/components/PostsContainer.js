@@ -25,9 +25,7 @@ const PostsContainer = (props) => {
   const classes = useStyles()
 
   return <div className={classes.root}>
-    <PostsHeader currentPage={currentPage} totalPosts={totalPosts} sortOrder={sortOrder}
-                 sortBy={sortBy} getPosts={getPosts}
-    />
+    <PostsHeader currentPage={currentPage} totalPosts={totalPosts}/>
     <Divider className={classes.divider}/>
 
     <div className={classes.postContainer}>

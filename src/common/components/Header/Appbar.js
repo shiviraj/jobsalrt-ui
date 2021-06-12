@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
 import store from "../../../store";
@@ -53,15 +53,8 @@ const useStyles = makeStyles((theme) => ({
 
 const Appbar = ({setOpenDrawer}) => {
   const classes = useStyles();
-  const [userName, setUserName] = useState("")
   const [searchText, setSearchText] = useState("")
   const router = useRouter()
-
-  const unsubscribe = store.subscribe(() => {
-    const {user} = store.getState()
-    const userName = user.data && user.data.name
-    setUserName(userName)
-  })
 
   const handleChange = (event) => {
     const value = event.target.value
@@ -69,10 +62,6 @@ const Appbar = ({setOpenDrawer}) => {
     if (router.pathname !== "/posts") router.push("/posts").then()
     store.dispatch(setSearch(value))
   }
-
-  useEffect(() => {
-    userName && unsubscribe()
-  }, [userName])
 
   return (<AppBar className={classes.root}>
       <Toolbar className={classes.toolBar}>

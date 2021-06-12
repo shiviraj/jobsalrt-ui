@@ -6,6 +6,7 @@ import {useRouter} from "next/router";
 import * as querystring from "querystring";
 import {Button, Typography} from "@material-ui/core";
 import MobileFilter from "./components/filters/MobileFilter";
+import * as state from "./reducer";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,6 +17,7 @@ const useStyles = makeStyles(theme => ({
   postContainer: {
     position: "relative",
     width: '80%',
+    backgroundColor: theme.palette.common.white,
     [theme.breakpoints.down('sm')]: {
       paddingTop: theme.spacing(5.8),
       width: '100%',
@@ -41,6 +43,7 @@ const useStyles = makeStyles(theme => ({
   filterContainer: {
     width: '19.5%',
     display: "block",
+    backgroundColor: theme.palette.common.white,
     [theme.breakpoints.down('sm')]: {
       display: "none",
     }
@@ -65,7 +68,7 @@ const Posts = (props) => {
     const {category, ...rest} = router.query
     const restFilters = parseFilters(rest);
     if (category) {
-      setFilters({...filters, ...restFilters})
+      setFilters({...state.defaultState().filters, ...restFilters})
       setType(category)
     }
   }, [router.query.category])

@@ -36,9 +36,9 @@ const useStyles = makeStyles(theme => ({
     display: "flex",
     justifyContent: "space-around",
     alignItems: "center",
-    borderTop: `2px solid ${theme.palette.grey[600]}`,
+    borderTop: `2px solid ${theme.palette.primary.main}`,
     backgroundColor: theme.palette.grey[200],
-    height: theme.spacing(6),
+    height: theme.spacing(7),
   }
 }))
 
@@ -46,6 +46,10 @@ const MobileFilter = ({filters, setFilters, open, setOpen}) => {
   const classes = useStyles()
   const [tempFilter, setTempFilter] = useState(filters)
   const [postCount, setPostCount] = useState(0)
+
+  useEffect(() => {
+    setTempFilter(filters)
+  }, [filters])
 
   const handleApplyFilter = () => {
     setFilters(tempFilter);
@@ -56,8 +60,8 @@ const MobileFilter = ({filters, setFilters, open, setOpen}) => {
 
   useEffect(() => {
     if (category) {
-      API.posts.postsCount(tempFilter, category)
-        .then(result => setPostCount(result))
+      API.posts.postsCount(category, tempFilter)
+        .then(result => setPostCount(result.totalPost))
         .catch(() => ({}))
     }
   }, [tempFilter])
@@ -80,7 +84,7 @@ const MobileFilter = ({filters, setFilters, open, setOpen}) => {
         </div>
         <div className={classes.buttonContainer}>
           <Typography>{postCount} Jobs Found</Typography>
-          <Button color="primary" variant="contained" onClick={handleApplyFilter}>Apply Filers</Button>
+          <Button color="primary" variant="contained" size="small" onClick={handleApplyFilter}>Apply Filers</Button>
         </div>
       </div>
     </React.Fragment>

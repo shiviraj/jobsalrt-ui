@@ -35,7 +35,7 @@ const userReducer = (state = defaultState(), action) => {
       return loop(
         state,
         Cmd.run(API.posts.postsCount, {
-          args: [state.filters, state.sortBy, state.sortOrder, state.type, state.search],
+          args: [state.type, state.filters, state.search],
           successActionCreator: postsCountSuccess,
           failActionCreator: postsCountError
         })
@@ -54,7 +54,7 @@ const userReducer = (state = defaultState(), action) => {
       state = {...state, loading: true, error: false, errorMessage: null, data: [], ...action.payload}
       return loop(state,
         Cmd.run(API.posts.getPosts, {
-          args: [state.filters, state.sortBy, state.sortOrder, state.type, state.search, state.currentPage],
+          args: [state.type, state.filters, state.search, state.currentPage],
           successActionCreator: getPostsSuccess,
           failActionCreator: getPostsError
         })

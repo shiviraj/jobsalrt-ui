@@ -3,8 +3,8 @@ import axios from "../axios";
 
 const posts = (host = '') => {
   return {
-    postsCount(filters, sortBy, sortOrder, type, search) {
-      const options = {data: {filters, sortBy, sortOrder, search}, method: METHODS.POST}
+    postsCount(type, filters, search) {
+      const options = {data: {filters, search}, method: METHODS.POST}
       return axios.fetch(`${host}/api/posts/type/${type}/posts-count`, options)
     },
     getPosts(type, filters = {}, search = "", currentPage = 1) {
