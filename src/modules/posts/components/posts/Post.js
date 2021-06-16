@@ -43,8 +43,8 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0.5),
   },
   logo: {
-    maxHeight: theme.spacing(12),
-    maxWidth: "90%"
+    height: theme.spacing(12),
+    maxWidth: "100%"
   },
 }));
 
@@ -54,9 +54,9 @@ const Post = ({post}) => {
   const mobile = isMobile()
 
   return <Card className={classes.root} onMouseLeave={() => setVisible(false)} onMouseEnter={() => setVisible(true)}
-               onClick={() => redirectTo(`/post/${post.url}`)}>
+               onClick={() => redirectTo(`/post/${post.url}`, true)}>
     <CardContent className={classes.logoContainer}>
-      <img className={classes.logo} src={post.postLogo || "/logo.png"} alt={post.postLogo}/>
+      <img className={classes.logo} src={post.postLogo || "/logo.png"} alt={truncate(50)(post.name)}/>
     </CardContent>
     <CardContent className={(visible || mobile) ? classes.cardContent : `${classes.cardContent} ${classes.down}`}>
       <Typography variant="subtitle2" className={classes.title}>{truncate(50)(post.name)}</Typography>
@@ -64,7 +64,7 @@ const Post = ({post}) => {
       {post.lastDate && <Typography variant="body2"><b>Last Date :</b> &nbsp; {formatDate(post.lastDate)} </Typography>}
       {post.company && <Typography variant="body2"><b>Company :</b> &nbsp; {truncate(32)(post.company)} </Typography>}
       {(visible || mobile) &&
-      <Typography variant="body2"><b>Vacancy :</b> &nbsp; {post.totalVacancies || "Not Specified"} </Typography>}
+      <Typography variant="body2"><b>Vacancy :</b> &nbsp; {post.vacancies || "Not Specified"} </Typography>}
       {(visible || mobile) &&
       <Typography variant="body2"><b>Last Update :</b> &nbsp; {formatDate(post.postUpdateDate)} </Typography>}
     </CardContent>

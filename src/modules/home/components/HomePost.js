@@ -47,14 +47,14 @@ const HomePost = ({post}) => {
 
   return <Card className={classes.root} onClick={() => redirectTo(`/post/${post.url}`)}>
     <CardContent className={classes.logoContainer}>
-      <img className={classes.logo} src={post.postLogo || "/logo.png"} alt={post.postLogo}/>
+      <img className={classes.logo} src={post.postLogo || "/logo.png"} alt={truncate(50)(post.name)}/>
     </CardContent>
     <CardContent className={classes.cardContent}>
       <Typography variant="subtitle2" className={classes.title}>{truncate(50)(post.name)}</Typography>
       <Typography variant="body2"><b>Form Type :</b> &nbsp; {post.formType} </Typography>
       {post.lastDate && <Typography variant="body2"><b>Last Date :</b> &nbsp; {formatDate(post.lastDate)} </Typography>}
       {post.company && <Typography variant="body2"><b>Company :</b> &nbsp; {truncate(32)(post.company)} </Typography>}
-      <Typography variant="body2"><b>Vacancy :</b> &nbsp; {post.totalVacancies || "Not Specified"} </Typography>
+      <Typography variant="body2"><b>Vacancy :</b> &nbsp; {post.vacancies || "Not Specified"} </Typography>
       <Typography variant="body2"><b>Last Update :</b> &nbsp; {formatDate(post.postUpdateDate)} </Typography>
     </CardContent>
   </Card>

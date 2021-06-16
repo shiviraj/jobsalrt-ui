@@ -23,9 +23,9 @@ const CustomizedTable = ({details}) => {
               <StyledTableCell>Location</StyledTableCell>
               <StyledTableCell>{details.location}</StyledTableCell>
             </StyledTableRow>}
-            {details.totalVacancies && <StyledTableRow>
+            {details.vacancies && <StyledTableRow>
               <StyledTableCell>Total Vacancies</StyledTableCell>
-              <StyledTableCell>{details.totalVacancies}</StyledTableCell>
+              <StyledTableCell>{details.vacancies}</StyledTableCell>
             </StyledTableRow>}
             {details.company && <StyledTableRow>
               <StyledTableCell>Company</StyledTableCell>
