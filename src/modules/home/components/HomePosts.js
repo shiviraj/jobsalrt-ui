@@ -68,7 +68,7 @@ const HomePosts = ({posts, loading, width}) => {
   }, [posts, postRef])
 
   useEffect(() => {
-    const items = widths.container / widths.item
+    const items = Math.floor(widths.container / widths.item)
     const margin = (maxIndex === index && maxIndex !== 0) ? (posts.length * widths.item) - width : (Math.floor(items * widths.item * index))
     setMargin(-margin)
   }, [index])

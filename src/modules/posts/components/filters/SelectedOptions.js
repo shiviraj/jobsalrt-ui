@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
 const SelectedOptions = ({filters, setFilters}) => {
   const classes = useStyles()
 
-  const {formType, vacancies, ageLimit, location, qualification} = filters
+  const {formType, vacancies, ageLimit, location, qualification, company} = filters
 
   const handleRemove = (key, value) => {
     if (value === undefined) {
@@ -33,10 +33,10 @@ const SelectedOptions = ({filters, setFilters}) => {
             color="primary"/>
     }
     {
-      ageLimit &&
-      <Chip variant="outlined" size="small" onDelete={() => handleRemove("ageLimit")} className={classes.filter}
-            label={`${ageLimit[0] === 14 ? "min" : ageLimit[0]} - ${ageLimit[1] > 40 ? "40+" : ageLimit[1]}`}
-            color="primary"/>
+      ageLimit && ageLimit.length > 0 && ageLimit.map(age =>
+        <Chip variant="outlined" size="small" onDelete={() => handleRemove("ageLimit", age)} className={classes.filter}
+              label={age} color="primary"/>
+      )
     }
     {
       location && location.length > 0 && location.map(l =>
@@ -48,6 +48,12 @@ const SelectedOptions = ({filters, setFilters}) => {
       qualification && qualification.length > 0 && qualification.map(q =>
         <Chip variant="outlined" size="small" onDelete={() => handleRemove("qualification", q)}
               className={classes.filter} label={q} color="primary"/>
+      )
+    }
+    {
+      company && company.length > 0 && company.map(c =>
+        <Chip variant="outlined" size="small" onDelete={() => handleRemove("company", c)}
+              className={classes.filter} label={c} color="primary"/>
       )
     }
   </div>

@@ -34,6 +34,8 @@ const useStyles = makeStyles(theme => ({
   },
   buttonContainer: {
     display: "flex",
+    marginBottom: theme.spacing(7),
+    bottom: 0,
     justifyContent: "space-around",
     alignItems: "center",
     borderTop: `2px solid ${theme.palette.primary.main}`,

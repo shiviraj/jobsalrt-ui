@@ -5,6 +5,7 @@ import FilterOptions from "./filters/FilterOptions";
 import FilterRange from "./filters/FilterRange";
 import FilterInput from "./filters/FilterInput";
 import SelectedOptions from "./filters/SelectedOptions";
+import FilterAge from "./filters/FilterAge";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -39,8 +40,7 @@ const FilterContainer = ({filters, setFilters}) => {
     <FilterOptions filters={filters} setFilters={setFilters} title="Form Type"/>
     <FilterRange title="Vacancies" values={[0, 100, 500, 1000, 2000, 3000, 5000, 5500]} filters={filters}
                  setFilters={setFilters} keyName="vacancies"/>
-    <FilterRange title="Age Limit" values={[14, 16, 18, 20, 22, 25, 30, 35, 40, 45]} filters={filters}
-                 setFilters={setFilters} keyName="ageLimit"/>
+    <FilterAge title="Age" filters={filters} setFilters={setFilters} keyName="ageLimit"/>
     <FilterInput title="Location" filters={filters} keyName="location" setFilters={setFilters}/>
     <FilterInput title="Education" filters={filters} keyName="qualification" setFilters={setFilters}/>
     <FilterInput title="Organisation" filters={filters} keyName="company" setFilters={setFilters}/>

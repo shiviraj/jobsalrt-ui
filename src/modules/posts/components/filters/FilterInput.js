@@ -3,6 +3,7 @@ import {Accordion, AccordionDetails, AccordionSummary, Chip, MenuItem, TextField
 import {makeStyles} from "@material-ui/core/styles";
 import {ExpandMore} from "@material-ui/icons";
 import API from "../../../../API";
+import {isMobile} from "../../../../utils/userAgent";
 
 const useStyles = makeStyles(theme => ({
   title: {textTransform: "capitalize"},
@@ -78,6 +79,8 @@ const FilterInput = ({title, filters, setFilters, keyName}) => {
     }
   }
 
+  const mobile = isMobile()
+
   return <Accordion square defaultExpanded className={classes.accordion}>
     <AccordionSummary expandIcon={<ExpandMore/>}>
       <Typography variant="h6" className={classes.title}>{title}</Typography>
@@ -91,10 +94,14 @@ const FilterInput = ({title, filters, setFilters, keyName}) => {
                                              onDelete={() => handleDelete(value)}/>)
         }
       </div>
+      {mobile && inputValue && suggestions.map((suggestion, index) => {
+        return <MenuItem key={index} value={suggestion} selected={index === selectedIndex}
+                         onClick={() => handleAdd(suggestion)}>{suggestion}</MenuItem>
+      })}
       <TextField size="small" variant="standard" onChange={handleChange}
                  onKeyDown={handleKeyDown}
                  placeholder={`Enter ${title.toLowerCase()}...`} value={inputValue}/>
-      {inputValue && suggestions.map((suggestion, index) => {
+      {!mobile && inputValue && suggestions.map((suggestion, index) => {
         return <MenuItem key={index} value={suggestion} selected={index === selectedIndex}
                          onClick={() => handleAdd(suggestion)}>{suggestion}</MenuItem>
       })}

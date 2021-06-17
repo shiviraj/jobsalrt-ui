@@ -19,7 +19,7 @@ const useStyles = makeStyles(theme => ({
     width: '80%',
     backgroundColor: theme.palette.common.white,
     [theme.breakpoints.down('sm')]: {
-      paddingTop: theme.spacing(5.8),
+      marginTop: theme.spacing(5.8),
       width: '100%',
     }
   },
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
     width: "100vw",
     position: "fixed",
     backgroundColor: theme.palette.common.white,
-    boxShadow: theme.shadows[1],
+    boxShadow: theme.shadows[2],
     margin: theme.spacing(-0.6, -0.5),
     display: "none",
     [theme.breakpoints.down('sm')]: {

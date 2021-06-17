@@ -10,13 +10,18 @@ const useStyles = makeStyles(theme => ({
     alignItems: "center",
     margin: theme.spacing(1, 0, 0, 2),
     [theme.breakpoints.down('sm')]: {
-      margin: theme.spacing(0, 0, 0, 1),
+      margin: theme.spacing(-1, 0, 0, 1),
     }
   },
   title: {
     textTransform: "capitalize"
   },
-  postCounts: {marginLeft: theme.spacing(1)},
+  postCounts: {
+    marginLeft: theme.spacing(1),
+    [theme.breakpoints.down('sm')]: {
+      marginLeft: theme.spacing(0),
+    }
+  },
 }));
 
 const PostsHeader = ({currentPage, totalPosts}) => {
