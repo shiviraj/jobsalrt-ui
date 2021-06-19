@@ -21,11 +21,11 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const PostsContainer = (props) => {
-  const {currentPage, totalPosts, totalPage, getPosts, posts, loading, sortBy, sortOrder} = props
+  const {currentPage, totalPosts, totalPage, getPosts, posts, loading, setTitle} = props
   const classes = useStyles()
 
   return <div className={classes.root}>
-    <PostsHeader currentPage={currentPage} totalPosts={totalPosts}/>
+    <PostsHeader currentPage={currentPage} totalPosts={totalPosts} setTitle={setTitle}/>
     <Divider className={classes.divider}/>
 
     <div className={classes.postContainer}>

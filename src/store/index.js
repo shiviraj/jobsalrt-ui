@@ -3,10 +3,12 @@ import {install} from 'redux-loop'
 import {createReducerManager} from './reducer'
 import postsReducer from "../modules/posts/reducer";
 import postReducer from "../modules/post/reducer";
+import commonReducer from "../modules/common/reducer";
 
 const staticReducers = {
   posts: postsReducer,
-  post: postReducer
+  post: postReducer,
+  common: commonReducer
 }
 
 const reduxDevTools = typeof window !== 'undefined' && window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__

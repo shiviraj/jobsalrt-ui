@@ -24,11 +24,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const PostsHeader = ({currentPage, totalPosts}) => {
+const PostsHeader = ({currentPage, totalPosts, setTitle}) => {
   const classes = useStyles()
   const {query} = useRouter()
   const category = query.category ? query.category.replaceAll("-", " ") : ""
-
+  setTitle(`JobsAlrt | ${category.toUpperCase()}`)
   const limit = 48
   const start = Math.min(totalPosts, (currentPage - 1) * limit + 1);
   const end = Math.min(totalPosts, currentPage * limit);

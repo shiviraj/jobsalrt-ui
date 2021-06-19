@@ -1,15 +1,11 @@
 import React from 'react';
-import {makeStyles} from '@material-ui/core/styles';
 import JobsContainer from "./components/JobsContainer";
 
-const useStyles = makeStyles(theme => ({}));
-
-
-const Home = () => {
-  const classes = useStyles();
+const Home = ({setTitle}) => {
+  setTitle("JobsAlrt | HOME")
 
   return (
-    <div className={classes.root}>
+    <div>
       <JobsContainer title="Latest Jobs"/>
       <JobsContainer title="Admit Cards"/>
       <JobsContainer title="Results"/>
@@ -21,6 +17,7 @@ const Home = () => {
 };
 
 export default Home
+
 
 /*
 Recommended Jobs (latest Jobs, trending jobs, RecentlyVisited)

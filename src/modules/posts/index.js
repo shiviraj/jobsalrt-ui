@@ -59,7 +59,7 @@ const parseFilters = rest => {
 };
 
 const Posts = (props) => {
-  const {filters, search, postsCount, getPosts, setFilters, setType} = props
+  const {filters, postsCount, getPosts, setFilters, setType} = props
   const classes = useStyles()
   const router = useRouter()
   const [open, setOpen] = useState(false)

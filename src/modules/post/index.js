@@ -5,17 +5,22 @@ import PostSkeleton from "./components/PostSkeleton";
 import CustomizedTable from "./components/CustomizedTables";
 import ImportantLinks from "./components/ImportantLinks";
 import BasicDetails from "./components/BasicDetails";
+import {formatDate} from "../../utils/formatDate";
 
 const Post = (props) => {
   const router = useRouter()
   const {url} = router.query
-  const {post, loading, getPost} = props
+  const {post, loading, getPost, setTitle, setDescription} = props
 
   useEffect(() => {
     url && getPost(url)
   }, [url])
 
   if (loading || !post) return <><PostSkeleton/><PostSkeleton/><PostSkeleton/><PostSkeleton/></>
+
+  setTitle(`Jobsalrt | ${post.basicDetails.name}`)
+  setDescription(`${post.basicDetails.name}\nLast Date: ${formatDate(post.basicDetails.lastDate)}\nLocation: ${post.basicDetails.location}\nOrganisation: ${post.basicDetails.company}
+  Qualification: ${post.basicDetails.qualification}`)
 
   return (<Grid container>
       <BasicDetails details={post.basicDetails}/>

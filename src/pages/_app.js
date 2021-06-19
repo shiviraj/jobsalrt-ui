@@ -14,8 +14,8 @@ const MyApp = ({Component, pageProps, ...rest}) => {
   }, [])
 
   return <Provider store={store}>
-    <HeadTag/>
     <ThemeProvider theme={theme}>
+      <HeadTag common={store.getState().common}/>
       <Layout>
         <Component {...pageProps} />
       </Layout>
