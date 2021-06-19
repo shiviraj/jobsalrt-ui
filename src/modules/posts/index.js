@@ -59,7 +59,7 @@ const parseFilters = rest => {
 };
 
 const Posts = (props) => {
-  const {filters, postsCount, getPosts, setFilters, setType} = props
+  const {filters, search, postsCount, getPosts, setFilters, setType} = props
   const classes = useStyles()
   const router = useRouter()
   const [open, setOpen] = useState(false)
@@ -71,7 +71,7 @@ const Posts = (props) => {
       setFilters({...state.defaultState().filters, ...restFilters})
       setType(category)
     }
-  }, [router.query.category])
+  }, [router.query.catergory, router.query.search])
 
   useEffect(() => {
     if (router.query.category) {

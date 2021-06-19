@@ -36,7 +36,7 @@ const PostsHeader = ({currentPage, totalPosts}) => {
   return <div className={classes.titleContainer}>
     <Typography variant="h5" className={classes.title}>{category}</Typography>
     <Typography variant="subtitle2" className={classes.postCounts}>
-      (Showing {start} - {end} posts of {totalPosts} posts)
+      (Showing {start} - {end} posts of {totalPosts} posts) {category === "search" && `result for "${query.search}"`}
     </Typography>
   </div>
 }

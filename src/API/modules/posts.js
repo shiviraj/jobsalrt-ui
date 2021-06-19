@@ -14,6 +14,9 @@ const posts = (host = '') => {
     getOptions(key, text) {
       return axios.fetch(`${host}/api/posts/options?${key}=${text}`)
     },
+    getSearchOptions(text) {
+      return axios.fetch(`${host}/api/posts/search-options/${text}`)
+    }
   }
 }
 
