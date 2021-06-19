@@ -23,7 +23,7 @@ const SelectedOptions = ({filters, setFilters}) => {
 
   return <div className={classes.container}>
     {formType.length > 0 && formType.map((type) => {
-      return <Chip variant="outlined" color="primary" size="small" label={type} className={classes.filter}
+      return <Chip key={type} variant="outlined" color="primary" size="small" label={type} className={classes.filter}
                    onDelete={() => handleRemove("formType", type)}/>
     })}
     {
@@ -34,25 +34,25 @@ const SelectedOptions = ({filters, setFilters}) => {
     }
     {
       ageLimit && ageLimit.length > 0 && ageLimit.map(age =>
-        <Chip variant="outlined" size="small" onDelete={() => handleRemove("ageLimit", age)} className={classes.filter}
-              label={age} color="primary"/>
+        <Chip key={age} variant="outlined" size="small" onDelete={() => handleRemove("ageLimit", age)}
+              className={classes.filter} label={age} color="primary"/>
       )
     }
     {
       location && location.length > 0 && location.map(l =>
-        <Chip variant="outlined" size="small" onDelete={() => handleRemove("location", l)} className={classes.filter}
-              label={l} color="primary"/>
+        <Chip key={l} variant="outlined" size="small" onDelete={() => handleRemove("location", l)}
+              className={classes.filter} label={l} color="primary"/>
       )
     }
     {
       qualification && qualification.length > 0 && qualification.map(q =>
-        <Chip variant="outlined" size="small" onDelete={() => handleRemove("qualification", q)}
+        <Chip key={q} variant="outlined" size="small" onDelete={() => handleRemove("qualification", q)}
               className={classes.filter} label={q} color="primary"/>
       )
     }
     {
       company && company.length > 0 && company.map(c =>
-        <Chip variant="outlined" size="small" onDelete={() => handleRemove("company", c)}
+        <Chip key={c} variant="outlined" size="small" onDelete={() => handleRemove("company", c)}
               className={classes.filter} label={c} color="primary"/>
       )
     }

@@ -33,7 +33,7 @@ const JobsContainer = ({title}) => {
 
   useEffect(() => {
     containerRef.current && setWidth(containerRef.current.offsetWidth)
-  }, [containerRef])
+  }, [containerRef.current])
 
   useEffect(() => {
     setLoading(true)

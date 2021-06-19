@@ -60,29 +60,31 @@ const useStyles = makeStyles(theme => ({
 
 const Searchbar = () => {
   const classes = useStyles()
-  const [inputText, setInputText] = useState("")
+  const [inputText, setInputText] = useState(store.getState().posts.search || "")
   const [selectedIndex, setSelectedIndex] = useState(-1)
-  const [suggestions, setSuggestions] = useState(["as", "as", "as", "as", "as",])
+  const [suggestions, setSuggestions] = useState([])
   const router = useRouter()
 
   const setSearchText = payload => store.dispatch(setSearch(payload))
-  const search = store.getState().posts.search
+  const searchText = store.getState().posts.search
 
   useEffect(() => {
-    if (router.query.category !== "search") {
-      setSearchText("")
+    const {search, category} = router.query
+    if (search || category === "search") {
+      setInputText(search || "")
+    }
+    if (category !== "search") {
       setInputText("")
     }
-  }, [router.query])
-
+  }, [router.query.search, router.query.category])
 
   const handleAdd = (value) => {
-    if (router.pathname !== "/posts") {
-      const query = querystring.stringify({search: value})
-      router.push(`/search/posts?${query}`).then()
-      setSearchText(value)
-      setSelectedIndex(-1)
-    }
+    value = value.trim()
+    const query = querystring.stringify({search: value})
+    router.push(`/search/posts?${query}`).then()
+    setSearchText(value)
+    setSelectedIndex(-1)
+    setInputText(value)
   }
 
   const handleChange = (e) => {
@@ -107,7 +109,6 @@ const Searchbar = () => {
     }
     if (e.key === "Enter") {
       const value = (selectedIndex === -1) ? inputText : suggestions[selectedIndex]
-      setInputText(value)
       handleAdd(value)
     }
   }
@@ -130,7 +131,7 @@ const Searchbar = () => {
       </Button>
     </div>
     <div className={classes.suggestions}>
-      {inputText && search !== inputText && suggestions.map((suggestion, index) => {
+      {inputText && searchText !== inputText && suggestions.map((suggestion, index) => {
         return <MenuItem key={index} value={suggestion} selected={index === selectedIndex}
                          onClick={() => handleAdd(suggestion)}>{suggestion}</MenuItem>
       })}

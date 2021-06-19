@@ -3,12 +3,7 @@ import Head from 'next/head'
 import store from "../../store";
 
 const HeadTag = () => {
-  const [details, setDetails] = useState(store.getState().common)
-
-  store.subscribe(() => {
-    setDetails(store.getState().common)
-  })
-
+  const [details] = useState(store.getState().common)
   return <Head>
     <title>{details.title}</title>
     <meta charSet="UTF-8"/>

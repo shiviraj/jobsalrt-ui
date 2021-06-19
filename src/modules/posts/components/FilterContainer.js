@@ -12,6 +12,7 @@ const useStyles = makeStyles(theme => ({
     width: "100%",
     backgroundColor: theme.palette.common.white,
     paddingTop: theme.spacing(1),
+    marginBottom: theme.spacing(2)
   },
   titleBar: {
     display: "flex",
