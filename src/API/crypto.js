@@ -5,14 +5,14 @@ export const iv = crypto.randomBytes(16)
 
 const getSecretKey = (authToken) => authToken.slice(0, 32);
 
-const encryptRequestPayload = (key, params) => {
+const encryptRequestPayload = (key, params, iv) => {
   params = JSON.stringify(params)
   const cipher = crypto.createCipheriv(algorithm, key, iv);
   const encrypted = Buffer.concat([cipher.update(params), cipher.final()]);
   return encrypted.toString('hex')
 };
 
-const decryptResponseObject = (key, content) => {
+const decryptResponseObject = (key, content, iv) => {
   const decipher = crypto.createDecipheriv(algorithm, key, iv);
   const contentBuffer = Buffer.from(content, 'hex');
   const decrypted = Buffer.concat([decipher.update(contentBuffer), decipher.final()]);
@@ -24,7 +24,7 @@ const encryptRequest = (data, headers) => {
   const disableEncryption = headers['disable-encryption']
   if (data && !disableEncryption) {
     const key = getSecretKey(headers.authorization)
-    return {payload: encryptRequestPayload(key, data)}
+    return {payload: encryptRequestPayload(key, data, iv)}
   }
   return data
 }
@@ -33,9 +33,9 @@ const decryptResponse = (data, headers) => {
   const disableEncryption = headers['disable-encryption']
   if (data && data.payload && !disableEncryption) {
     const key = getSecretKey(headers.authorization)
-    return decryptResponseObject(key, data.payload)
+    return decryptResponseObject(key, data.payload, iv)
   }
   return data
 }
 
-export {encryptRequest, decryptResponse}
+export {encryptRequest, decryptResponse, encryptRequestPayload, decryptResponseObject}

@@ -1,7 +1,6 @@
 import {connect} from 'react-redux'
 import Home from "../modules/home";
 import {setFilters} from "../modules/posts/actions";
-import {setTitle} from "../modules/common/actions";
 
 export const mapStateToProps = state => {
   return {
@@ -14,7 +13,6 @@ export const mapStateToProps = state => {
 export const mapDispatchToProps = dispatch => {
   return {
     setFilters: (payload) => dispatch(setFilters(payload)),
-    setTitle: (payload) => dispatch(setTitle(payload))
   }
 }
 

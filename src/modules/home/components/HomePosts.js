@@ -55,22 +55,30 @@ const HomePosts = ({posts, loading, width}) => {
   const classes = useStyles()
   const [index, setIndex] = useState(0)
   const [maxIndex, setMaxIndex] = useState(0)
-  const [widths, setWidths] = useState({container: width, item: 1})
+  const [widths, setWidths] = useState(null)
   const [margin, setMargin] = useState(0)
   const postRef = createRef()
 
   useEffect(() => {
-    if (posts.length && postRef.current) {
-      setWidths({container: width, item: postRef.current.offsetWidth})
-      const itemsInRow = width / postRef.current.offsetWidth;
-      setMaxIndex(Math.floor(posts.length / itemsInRow));
+    if (postRef.current) {
+      setWidths(() => ({container: width, item: postRef.current.offsetWidth}))
     }
-  }, [posts, postRef])
+  }, [postRef.current, loading])
+
 
   useEffect(() => {
-    const items = Math.floor(widths.container / widths.item)
-    const margin = (maxIndex === index && maxIndex !== 0) ? (posts.length * widths.item) - width : (Math.floor(items * widths.item * index))
-    setMargin(-margin)
+    if (posts.length && widths) {
+      const itemsInRow = widths.container / widths.item;
+      setMaxIndex(Math.floor(posts.length / itemsInRow));
+    }
+  }, [widths])
+
+  useEffect(() => {
+    if (widths) {
+      const items = Math.floor(widths.container / widths.item)
+      const margin = (maxIndex === index && maxIndex !== 0) ? (posts.length * widths.item) - width : (Math.floor(items * widths.item * index))
+      setMargin(-margin)
+    }
   }, [index])
 
   const handleBackward = () => setIndex(Math.max(index - 1, 0))
