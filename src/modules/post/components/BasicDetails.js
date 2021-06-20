@@ -28,7 +28,7 @@ const CustomizedTable = ({details}) => {
               <StyledTableCell>{details.vacancies}</StyledTableCell>
             </StyledTableRow>}
             {details.company && <StyledTableRow>
-              <StyledTableCell>Company</StyledTableCell>
+              <StyledTableCell>Organisation</StyledTableCell>
               <StyledTableCell>{details.company}</StyledTableCell>
             </StyledTableRow>}
             {details.qualification && <StyledTableRow>
