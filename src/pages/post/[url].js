@@ -1,7 +1,6 @@
 import {connect} from 'react-redux'
 import Post from "../../modules/post";
 import {getPost} from "../../modules/post/actions";
-import {setDescription, setTitle} from "../../modules/common/actions";
 
 export const mapStateToProps = state => {
   return {
@@ -15,8 +14,6 @@ export const mapStateToProps = state => {
 export const mapDispatchToProps = dispatch => {
   return {
     getPost: (url) => dispatch(getPost(url)),
-    setTitle: (title) => dispatch(setTitle(title)),
-    setDescription: (description) => dispatch(setDescription(description))
   }
 }
 

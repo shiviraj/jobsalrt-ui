@@ -65,7 +65,7 @@ const HomePosts = ({posts, loading, width}) => {
       const itemsInRow = width / postRef.current.offsetWidth;
       setMaxIndex(Math.floor(posts.length / itemsInRow));
     }
-  }, [posts, postRef.current])
+  }, [posts, postRef])
 
   useEffect(() => {
     const items = Math.floor(widths.container / widths.item)

@@ -22,14 +22,12 @@ export default Home
 /*
 Recommended Jobs (latest Jobs, trending jobs, RecentlyVisited)
 Trending Jobs (based on popularity)
-
-
 Latest Jobs
 Admit Cards
 Results
 Answer Key
 Syllabus
 Admission
-RecentlyVisited (listOfUrls)
+RecentlyViewed (listOfUrls)
  */
 

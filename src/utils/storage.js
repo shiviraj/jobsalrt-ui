@@ -1,15 +1,13 @@
 const UNDEFINED = 'undefined'
 
-function storageLocation() {
-  return 'localStorage'
-}
+const storageLocation = () => 'localStorage';
 
-function setStorage(key, value) {
+const setStorage = (key, value) => {
   if (typeof window === UNDEFINED) return
   window[storageLocation()].setItem(key, JSON.stringify(value))
-}
+};
 
-function getStorage(key) {
+const getStorage = key => {
   try {
     if (typeof window === UNDEFINED) return
 
@@ -19,16 +17,16 @@ function getStorage(key) {
     }
   } catch (e) {
   }
-}
+};
 
-function clearStorage() {
+const clearStorage = () => {
   if (typeof window === UNDEFINED) return
   window[storageLocation()].clear()
-}
+};
 
-function removeFromStorage(key) {
+const removeFromStorage = key => {
   if (typeof window === UNDEFINED) return
   window[storageLocation()].removeItem(key)
-}
+};
 
 export {setStorage, getStorage, clearStorage, removeFromStorage}
