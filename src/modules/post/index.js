@@ -17,8 +17,8 @@ const Post = (props) => {
     if (url) {
       getPost(url)
       const recentlyViewed = getStorage(StorageKeys.RECENTLY_VIEWED) || []
-      recentlyViewed.unshift(url)
-      setStorage(StorageKeys.RECENTLY_VIEWED, recentlyViewed)
+      recentlyViewed.includes(url) || recentlyViewed.unshift(url)
+      setStorage(StorageKeys.RECENTLY_VIEWED, recentlyViewed.slice(0, 48))
     }
   }, [url])
 
