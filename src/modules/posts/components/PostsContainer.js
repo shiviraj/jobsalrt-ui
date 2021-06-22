@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const PostsContainer = (props) => {
-  const {currentPage, totalPosts, totalPage, getPosts, posts, loading, setTitle} = props
+  const {currentPage, setPage, totalPosts, totalPage, getPosts, posts, loading, setTitle} = props
   const classes = useStyles()
 
   return <div className={classes.root}>
@@ -33,7 +33,7 @@ const PostsContainer = (props) => {
     </div>
 
     <Divider className={classes.divider}/>
-    <PostsFooter currentPage={currentPage} totalPage={totalPage} getPosts={getPosts}/>
+    <PostsFooter currentPage={currentPage} totalPage={totalPage} setPage={setPage}/>
   </div>
 }
 

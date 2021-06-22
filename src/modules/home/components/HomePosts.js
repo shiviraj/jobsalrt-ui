@@ -68,7 +68,7 @@ const HomePosts = ({posts, loading, width}) => {
 
   useEffect(() => {
     if (posts.length && widths) {
-      const itemsInRow = widths.container / widths.item;
+      const itemsInRow = Math.floor(widths.container / widths.item);
       setMaxIndex(Math.floor(posts.length / itemsInRow));
     }
   }, [widths])

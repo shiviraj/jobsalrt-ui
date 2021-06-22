@@ -44,7 +44,7 @@ const JobsContainer = ({title}) => {
   }, [])
 
   const handleViewAll = () => {
-    redirectTo(`/${category}/posts`)
+    redirectTo(`/${category}/page/1/posts`)
   }
 
   return <div className={classes.root}>

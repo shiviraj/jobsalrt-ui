@@ -1,7 +1,7 @@
 import {connect} from 'react-redux'
-import Posts from "../../modules/posts";
-import {getPosts, postsCount, setFilters, setSearch, setType} from "../../modules/posts/actions";
-import {setTitle} from "../../modules/common/actions";
+import Posts from "../../../../modules/posts";
+import {getPosts, postsCount, setFilters, setPage, setSearch, setType} from "../../../../modules/posts/actions";
+import {setTitle} from "../../../../modules/common/actions";
 
 export const mapStateToProps = state => {
   return {
@@ -24,7 +24,8 @@ export const mapDispatchToProps = dispatch => {
     setFilters: (payload) => dispatch(setFilters(payload)),
     setType: (payload) => dispatch(setType(payload)),
     setTitle: (payload) => dispatch(setTitle(payload)),
-    setSearch: (payload) => dispatch(setSearch(payload))
+    setSearch: (payload) => dispatch(setSearch(payload)),
+    setPage: (page) => dispatch(setPage(page))
   }
 }
 

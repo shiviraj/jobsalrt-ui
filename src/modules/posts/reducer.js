@@ -11,6 +11,7 @@ import {
   postsCountError,
   postsCountSuccess,
   SET_FILTERS,
+  SET_PAGE,
   SET_SEARCH,
   SET_TYPE
 } from "./actions";
@@ -24,8 +25,8 @@ const defaultState = () => ({
   filters: {formType: [], location: [], qualification: [], company: []},
   type: "all-jobs",
   search: "",
-  currentPage: 1,
-  totalPage: 1,
+  currentPage: 0,
+  totalPage: 0,
   totalPosts: 0,
 })
 
@@ -80,6 +81,11 @@ const userReducer = (state = defaultState(), action) => {
 
     case SET_TYPE: {
       return {...state, type: action.payload}
+    }
+
+    case SET_PAGE: {
+      const currentPage = Number.isNaN(+action.payload) ? 1 : +action.payload
+      return {...state, currentPage}
     }
 
     default:

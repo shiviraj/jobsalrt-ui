@@ -59,31 +59,32 @@ const parseFilters = rest => {
 };
 
 const Posts = (props) => {
-  const {filters, search, setSearch, postsCount, getPosts, setFilters, setType} = props
+  const {filters, currentPage, setPage, search, setSearch, postsCount, getPosts, setFilters, setType} = props
   const classes = useStyles()
   const router = useRouter()
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const {category, search, ...rest} = router.query
+    const {category, search, page, ...rest} = router.query
     const restFilters = parseFilters(rest);
     if (category) {
+      setPage(currentPage || page)
       search && setSearch(search)
       setType(category)
       setFilters({...state.defaultState().filters, ...restFilters})
     }
-  }, [router.query.category, search])
+  }, [router.query.category, search, currentPage])
 
   useEffect(() => {
     const {category} = router.query
-    if (category) {
+    if (category && currentPage) {
       const query = search ? querystring.stringify({...filters, search}) : querystring.stringify(filters)
-      router.push(`/${category}/posts?${query}`).then((a) => {
+      router.push(`/${category}/page/${currentPage}/posts?${query}`).then((a) => {
         postsCount()
-        getPosts({currentPage: 1})
+        getPosts()
       })
     }
-  }, [filters, router.query.category, search])
+  }, [filters, search, currentPage])
 
   return <div className={classes.root}>
     <Button className={classes.mobileFilter} onClick={() => setOpen(!open)}>

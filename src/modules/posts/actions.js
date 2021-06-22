@@ -9,6 +9,7 @@ export const GET_POSTS_ERROR = NAMESPACE + 'GET_POSTS_ERROR'
 export const SET_SEARCH = NAMESPACE + 'SET_SEARCH'
 export const SET_FILTERS = NAMESPACE + 'SET_FILTERS'
 export const SET_TYPE = NAMESPACE + 'SET_TYPE'
+export const SET_PAGE = NAMESPACE + 'SET_PAGE'
 
 const postsCount = (payload) => ({
   type: POSTS_COUNT,
@@ -56,6 +57,11 @@ const setType = (type) => ({
   payload: type
 })
 
+const setPage = (page) => ({
+  type: SET_PAGE,
+  payload: page
+})
+
 export {
   postsCount,
   postsCountSuccess,
@@ -65,5 +71,6 @@ export {
   getPostsError,
   setSearch,
   setFilters,
-  setType
+  setType,
+  setPage
 }

@@ -17,13 +17,13 @@ const useStyles = makeStyles(theme => ({
 }));
 
 
-const PostsFooter = ({currentPage, totalPage, getPosts}) => {
+const PostsFooter = ({currentPage, totalPage, setPage}) => {
   const classes = useStyles()
   const mobile = isMobile()
   return <div className={classes.paginationContainer}>
     {!mobile && <Typography variant="body1">Page {currentPage} of {totalPage}</Typography>}
     <Pagination count={totalPage} page={currentPage} showFirstButton showLastButton color="primary" size="small"
-                onChange={(currentPage) => getPosts({currentPage})}/>
+                onChange={(_e, page) => setPage(page)}/>
     {!mobile && <div>-</div>}
   </div>
 }
