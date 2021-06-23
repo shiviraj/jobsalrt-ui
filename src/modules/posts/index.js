@@ -70,15 +70,18 @@ const Posts = (props) => {
     if (category) {
       setPage(currentPage || page)
       search && setSearch(search)
+      category !== "search" && setSearch("")
       setType(category)
       setFilters({...state.defaultState().filters, ...restFilters})
     }
-  }, [router.query.category, search, currentPage])
+  }, [router.query.category, currentPage])
 
   useEffect(() => {
-    const {category} = router.query
+    const category = search ? "search" : router.query.category
     if (category && currentPage) {
-      const query = search ? querystring.stringify({...filters, search}) : querystring.stringify(filters)
+      const query = category === "search" && search
+        ? querystring.stringify({...filters, search})
+        : querystring.stringify(filters)
       router.push(`/${category}/page/${currentPage}/posts?${query}`).then((a) => {
         postsCount()
         getPosts()

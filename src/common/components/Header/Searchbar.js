@@ -81,7 +81,7 @@ const Searchbar = () => {
   const handleAdd = (value) => {
     value = value.trim()
     const query = querystring.stringify({search: value})
-    router.push(`/search/posts?${query}`).then()
+    router.push(`/search/page/1/posts?${query}`).then()
     setSearchText(value)
     setSelectedIndex(-1)
     setInputText(value)
@@ -116,15 +116,15 @@ const Searchbar = () => {
   return <div className={classes.searchContainer}>
     <div className={classes.search}>
       <InputBase
-        placeholder="Search by job name, location, company, qualification..."
-        onChange={handleChange}
-        onKeyDown={handleKeyDown}
-        classes={{
+          placeholder="Search by job name, location, organisation, qualification..."
+          onChange={handleChange}
+          onKeyDown={handleKeyDown}
+          classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
         }}
-        value={inputText}
-        inputProps={{'aria-label': 'search'}}
+          value={inputText}
+          inputProps={{'aria-label': 'search'}}
       />
       <Button size="small" className={classes.searchIcon} onClick={() => handleAdd(inputText)}>
         <Search fontSize="small"/>

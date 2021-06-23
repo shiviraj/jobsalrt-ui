@@ -31,7 +31,7 @@ const Post = (props) => {
       {post.ageLimit && <CustomizedTable details={post.ageLimit} title="Age Limit"/>}
       {post.vacancyDetails && <CustomizedTable details={post.vacancyDetails} title="Vacancy Details"/>}
       {
-        Object.keys(post.others).map((keyName, index) =>
+        post.others && Object.keys(post.others).map((keyName, index) =>
           <CustomizedTable key={keyName} details={post.others[keyName]} title={keyName}/>
         )
       }
