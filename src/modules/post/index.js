@@ -1,5 +1,5 @@
 import React, {useEffect} from 'react'
-import {Grid} from "@material-ui/core";
+import {Grid, Typography} from "@material-ui/core";
 import {useRouter} from "next/router";
 import PostSkeleton from "./components/PostSkeleton";
 import CustomizedTable from "./components/CustomizedTables";
@@ -7,9 +7,18 @@ import ImportantLinks from "./components/ImportantLinks";
 import BasicDetails from "./components/BasicDetails";
 import {getStorage, setStorage} from "../../utils/storage";
 import {StorageKeys} from "../../constants/storage";
+import {makeStyles} from "@material-ui/styles";
+
+const useStyles = makeStyles(theme => ({
+  noPost: {
+    margin: theme.spacing(20, 0), textAlign: "center",
+    [theme.breakpoints.down("sm")]: {}
+  },
+}))
 
 const Post = (props) => {
   const router = useRouter()
+  const classes = useStyles()
   const {url} = router.query
   const {post, loading, getPost} = props
 
@@ -22,7 +31,9 @@ const Post = (props) => {
     }
   }, [url])
 
-  if (loading || !post) return <><PostSkeleton/><PostSkeleton/><PostSkeleton/><PostSkeleton/></>
+  if (loading) return <><PostSkeleton/><PostSkeleton/><PostSkeleton/><PostSkeleton/></>
+
+  if (!post) return <Typography variant="h2" color="error" className={classes.noPost}>No post found!!</Typography>
 
   return (<Grid container>
       <BasicDetails details={post.basicDetails}/>

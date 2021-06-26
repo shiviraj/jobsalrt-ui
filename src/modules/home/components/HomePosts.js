@@ -82,10 +82,7 @@ const HomePosts = ({posts, loading, width}) => {
   }, [index])
 
   const handleBackward = () => setIndex(Math.max(index - 1, 0))
-  const handleForward = () => {
-
-    setIndex(Math.min(index + 1, maxIndex));
-  }
+  const handleForward = () => setIndex(Math.min(index + 1, maxIndex))
 
   if (loading) {
     return <div className={classes.postsContainer}>

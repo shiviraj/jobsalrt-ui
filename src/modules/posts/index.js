@@ -65,15 +65,17 @@ const Posts = (props) => {
   const [open, setOpen] = useState(false)
 
   useEffect(() => {
-    const {category, search, page, ...rest} = router.query
-    const restFilters = parseFilters(rest);
-    if (category) {
-      setPage(currentPage || page)
-      search && setSearch(search)
-      category !== "search" && setSearch("")
-      setType(category)
-      setFilters({...state.defaultState().filters, ...restFilters})
-    }
+    (async () => {
+      const {category, search, page, ...rest} = router.query
+      const restFilters = parseFilters(rest);
+      if (category) {
+        await setPage(currentPage || page)
+        search && await setSearch(search)
+        category !== "search" && await setSearch("")
+        await setType(category)
+        await setFilters({...state.defaultState().filters, ...restFilters})
+      }
+    })()
   }, [router.query.category, currentPage])
 
   useEffect(() => {
