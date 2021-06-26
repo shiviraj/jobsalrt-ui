@@ -23,10 +23,10 @@ const defaultState = () => ({
   errorMessage: null,
   data: [],
   filters: {formType: [], location: [], qualification: [], company: []},
-  type: "all-jobs",
+  type: "",
   search: "",
-  currentPage: 0,
-  totalPage: 0,
+  currentPage: 1,
+  totalPage: 1,
   totalPosts: 0,
 })
 

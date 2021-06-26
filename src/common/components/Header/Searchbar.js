@@ -4,7 +4,7 @@ import React, {useEffect, useState} from "react";
 import {useRouter} from "next/router";
 import store from "../../../store";
 import {makeStyles} from "@material-ui/styles";
-import {setSearch} from "../../../modules/posts/actions";
+import {setSearch, setType} from "../../../modules/posts/actions";
 import * as querystring from "querystring";
 import API from "../../../API";
 
@@ -66,23 +66,22 @@ const Searchbar = () => {
   const router = useRouter()
 
   const setSearchText = payload => store.dispatch(setSearch(payload))
+  const setTypeText = payload => store.dispatch(setType(payload))
   const searchText = store.getState().posts.search
 
   useEffect(() => {
     const {search, category} = router.query
-    if (search || category === "search") {
-      setInputText(search || "")
-    }
-    if (category !== "search") {
-      setInputText("")
-    }
-  }, [router.query.search, router.query.category])
+    const text = category !== "search" ? "" : (search || "")
+    setInputText(text)
+    setSearchText(text)
+  }, [router.query.category])
 
   const handleAdd = (value) => {
     value = value.trim()
     const query = querystring.stringify({search: value})
     router.push(`/search/page/1/posts?${query}`).then()
     setSearchText(value)
+    setTypeText("search")
     setSelectedIndex(-1)
     setInputText(value)
   }
@@ -116,15 +115,15 @@ const Searchbar = () => {
   return <div className={classes.searchContainer}>
     <div className={classes.search}>
       <InputBase
-          placeholder="Search by job name, location, organisation, qualification..."
-          onChange={handleChange}
-          onKeyDown={handleKeyDown}
-          classes={{
+        placeholder="Search by job name, location, organisation, qualification..."
+        onChange={handleChange}
+        onKeyDown={handleKeyDown}
+        classes={{
           root: classes.inputRoot,
           input: classes.inputInput,
         }}
-          value={inputText}
-          inputProps={{'aria-label': 'search'}}
+        value={inputText}
+        inputProps={{'aria-label': 'search'}}
       />
       <Button size="small" className={classes.searchIcon} onClick={() => handleAdd(inputText)}>
         <Search fontSize="small"/>

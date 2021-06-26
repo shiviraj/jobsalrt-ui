@@ -59,37 +59,52 @@ const parseFilters = rest => {
 };
 
 const Posts = (props) => {
-  const {filters, currentPage, setPage, search, setSearch, postsCount, getPosts, setFilters, setType} = props
+  const {filters, currentPage, totalPage, setPage, search, postsCount, getPosts, setFilters, type, setType} = props
   const classes = useStyles()
   const router = useRouter()
   const [open, setOpen] = useState(false)
+  const [initLoading, setInitLoading] = useState(true)
+
+  const reload = () => {
+    if (type) {
+      const query = type === "search" && search
+        ? querystring.stringify({...filters, search})
+        : querystring.stringify(filters)
+      router.push(`/${type}/page/${currentPage}/posts?${query}`).then((a) => {
+        getPosts()
+        postsCount()
+      })
+    }
+  }
 
   useEffect(() => {
     (async () => {
-      const {category, search, page, ...rest} = router.query
-      const restFilters = parseFilters(rest);
-      if (category) {
-        await setPage(currentPage || page)
-        search && await setSearch(search)
-        category !== "search" && await setSearch("")
-        await setType(category)
+      const {category, page, search, ...rest} = router.query
+      if (type) {
+        const restFilters = parseFilters(rest);
         await setFilters({...state.defaultState().filters, ...restFilters})
       }
     })()
-  }, [router.query.category, currentPage])
+  }, [type])
 
   useEffect(() => {
-    const category = search ? "search" : router.query.category
-    if (category && currentPage) {
-      const query = category === "search" && search
-        ? querystring.stringify({...filters, search})
-        : querystring.stringify(filters)
-      router.push(`/${category}/page/${currentPage}/posts?${query}`).then((a) => {
-        postsCount()
-        getPosts()
-      })
+    (async () => {
+      await setPage(1);
+    })()
+  }, [filters, search])
+
+  useEffect(() => {
+    !initLoading && reload()
+  }, [currentPage, filters, search])
+
+  useEffect(() => {
+    if (router.query.category) {
+      setPage(currentPage > totalPage ? 1 : currentPage || router.query.page)
+      setType(router.query.category)
+      setInitLoading(false)
     }
-  }, [filters, search, currentPage])
+  }, [router.query.category, totalPage])
+
 
   return <div className={classes.root}>
     <Button className={classes.mobileFilter} onClick={() => setOpen(!open)}>
@@ -101,7 +116,8 @@ const Posts = (props) => {
     <div className={classes.filterContainer}>
       <FilterContainer filters={filters} setFilters={setFilters}/>
     </div>
-    <MobileFilter filters={filters} setFilters={setFilters} open={open} setOpen={setOpen}/>
+    <MobileFilter className={classes.mobileFilter} filters={filters} setFilters={setFilters} open={open}
+                  setOpen={setOpen}/>
   </div>
 }
 
