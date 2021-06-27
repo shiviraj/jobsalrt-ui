@@ -1,7 +1,6 @@
 import {Typography} from "@material-ui/core";
 import React from "react";
 import {makeStyles} from "@material-ui/core/styles";
-import {useRouter} from "next/router";
 
 const useStyles = makeStyles(theme => ({
   titleContainer: {
@@ -24,10 +23,9 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const PostsHeader = ({currentPage, totalPosts}) => {
+const PostsHeader = ({type, currentPage, totalPosts, search}) => {
   const classes = useStyles()
-  const {query} = useRouter()
-  const category = query.category ? query.category.replaceAll("-", " ") : ""
+  const category = type && type.replaceAll("-", " ")
   const limit = 48
   const start = Math.min(totalPosts, (currentPage - 1) * limit + 1);
   const end = Math.min(totalPosts, currentPage * limit);
@@ -35,7 +33,7 @@ const PostsHeader = ({currentPage, totalPosts}) => {
   return <div className={classes.titleContainer}>
     <Typography variant="h5" className={classes.title}>{category}</Typography>
     <Typography variant="subtitle2" className={classes.postCounts}>
-      (Showing {start} - {end} posts of {totalPosts} posts) {category === "search" && `result for "${query.search}"`}
+      (Showing {start} - {end} posts of {totalPosts} posts) {type === "search" && search && `result for "${search}"`}
     </Typography>
   </div>
 }

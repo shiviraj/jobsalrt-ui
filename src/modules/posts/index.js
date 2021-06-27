@@ -78,33 +78,40 @@ const Posts = (props) => {
   }
 
   useEffect(() => {
-    (async () => {
-      const {category, page, search, ...rest} = router.query
-      if (type) {
-        const restFilters = parseFilters(rest);
-        await setFilters({...state.defaultState().filters, ...restFilters})
-      }
-    })()
-  }, [type])
+    if (type) {
+      setFilters(state.defaultState().filters)
+    }
+  }, [search])
 
   useEffect(() => {
-    (async () => {
-      await setPage(1);
-    })()
+    if (type && currentPage > totalPage) setPage(1)
+  }, [totalPage])
+
+  useEffect(() => {
+    if (type) {
+      !initLoading && setPage(1);
+      setInitLoading(false)
+    }
   }, [filters, search])
 
   useEffect(() => {
-    !initLoading && reload()
-  }, [currentPage, filters, search])
+    if (router.query.category) {
+      setType(router.query.category)
+      setPage(router.query.page)
+    }
+  }, [router.query.category])
 
   useEffect(() => {
-    if (router.query.category) {
-      setPage(currentPage > totalPage ? 1 : currentPage || router.query.page)
-      setType(router.query.category)
-      setInitLoading(false)
+    const {category, page, search, ...rest} = router.query
+    if (type) {
+      const restFilters = parseFilters(rest);
+      setFilters({...state.defaultState().filters, ...restFilters})
     }
-  }, [router.query.category, totalPage])
+  }, [type])
 
+  useEffect(() => {
+    reload()
+  }, [currentPage, filters, search])
 
   return <div className={classes.root}>
     <Button className={classes.mobileFilter} onClick={() => setOpen(!open)}>

@@ -23,6 +23,7 @@ const useStyles = makeStyles(theme => ({
 const StyledTableCell = withStyles((theme) => ({
   head: {
     fontSize: 18,
+    // border: `1px solid ${theme.palette.primary.light}`,
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(0.5),
       fontSize: 14,
@@ -30,6 +31,7 @@ const StyledTableCell = withStyles((theme) => ({
   },
   body: {
     fontSize: 14,
+    // border: `1px solid ${theme.palette.primary.light}`,
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(0.5),
       fontSize: 13,
