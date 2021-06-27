@@ -46,8 +46,9 @@ const Post = (props) => {
           <CustomizedTable key={keyName} details={post.others[keyName]} title={keyName}/>
         )
       }
-      {post.selectionProcess && <CustomizedTable details={post.selectionProcess} title="Selection Process"/>}
-      {post.howToApply && <CustomizedTable details={post.howToApply} title="How To Apply"/>}
+      {post.selectionProcess &&
+      <CustomizedTable details={{body: post.selectionProcess.map(item => [item])}} title="Selection Process"/>}
+      {post.howToApply && <CustomizedTable details={{body: post.howToApply.map(item => [item])}} title="How To Apply"/>}
       {post.importantLinks && <ImportantLinks details={post.importantLinks}/>}
     </Grid>
   )

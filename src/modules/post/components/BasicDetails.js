@@ -15,6 +15,10 @@ const CustomizedTable = ({details}) => {
               <StyledTableCell>Form Type</StyledTableCell>
               <StyledTableCell>{details.formType}</StyledTableCell>
             </StyledTableRow>
+            {details.advtNo && <StyledTableRow>
+              <StyledTableCell>Advt. No.</StyledTableCell>
+              <StyledTableCell>{details.advtNo}</StyledTableCell>
+            </StyledTableRow>}
             {details.lastDate && <StyledTableRow>
               <StyledTableCell>Last Date</StyledTableCell>
               <StyledTableCell>{formatDate(details.lastDate)}</StyledTableCell>
