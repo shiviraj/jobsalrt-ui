@@ -29,7 +29,7 @@ const PostsContainer = (props) => {
     <Divider className={classes.divider}/>
 
     <div className={classes.postContainer}>
-      <AllPosts posts={posts} loading={loading}/>
+      <AllPosts posts={posts} loading={loading} type={type}/>
     </div>
 
     <Divider className={classes.divider}/>

@@ -31,7 +31,7 @@ const Post = (props) => {
     }
   }, [url])
 
-  if (loading) return <><PostSkeleton/><PostSkeleton/><PostSkeleton/><PostSkeleton/></>
+  if (loading || !url) return <><PostSkeleton/><PostSkeleton/><PostSkeleton/><PostSkeleton/></>
 
   if (!post) return <Typography variant="h2" color="error" className={classes.noPost}>No post found!!</Typography>
 

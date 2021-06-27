@@ -9,9 +9,10 @@ const useStyles = makeStyles(theme => ({
   noPost: {margin: theme.spacing(20), color: theme.palette.error.light},
 }));
 
-const AllPosts = ({posts, loading}) => {
+const AllPosts = ({posts, loading, type}) => {
   const classes = useStyles()
-  if (loading) return Array(12).fill("").map((_, index) => <PostSkeleton key={`key-${index}`}/>)
+
+  if (loading || !type) return Array(12).fill("").map((_, index) => <PostSkeleton key={`key-${index}`}/>)
   if (!posts.length) return <Typography variant="h3" className={classes.noPost}>No Post Found...</Typography>
   return <Grid container className={classes.container}>
     {
