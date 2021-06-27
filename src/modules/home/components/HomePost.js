@@ -54,7 +54,8 @@ const HomePost = ({post}) => {
       <Typography variant="body2"><b>Form Type :</b> &nbsp; {post.formType} </Typography>
       {post.lastDate && <Typography variant="body2"><b>Last Date :</b> &nbsp; {formatDate(post.lastDate)} </Typography>}
       {post.company &&
-      <Typography variant="body2"><b>Organisation :</b> &nbsp; {truncate(32)(post.company)} </Typography>}
+      <Typography variant="body2"><b>Organisation :</b> &nbsp; {truncate(32)(post.company.replaceAll(/\(.*\)/g, ""))}
+      </Typography>}
       <Typography variant="body2"><b>Vacancy :</b> &nbsp; {post.vacancies || "Not Specified"} </Typography>
       <Typography variant="body2"><b>Last Update :</b> &nbsp; {formatDate(post.postUpdateDate)} </Typography>
     </CardContent>

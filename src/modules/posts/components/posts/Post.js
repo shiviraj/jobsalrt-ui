@@ -63,7 +63,7 @@ const Post = ({post}) => {
       <Typography variant="body2"><b>Form Type :</b> &nbsp; {post.formType} </Typography>
       {post.lastDate && <Typography variant="body2"><b>Last Date :</b> &nbsp; {formatDate(post.lastDate)} </Typography>}
       {post.company &&
-      <Typography variant="body2"><b>Organisation :</b> &nbsp; {truncate(32)(post.company)} </Typography>}
+      <Typography variant="body2"><b>Organisation :</b> &nbsp; {post.company.replaceAll(/\(.*\)/g, "")} </Typography>}
       {(visible || mobile) &&
       <Typography variant="body2"><b>Vacancy :</b> &nbsp; {post.vacancies || "Not Specified"} </Typography>}
       {(visible || mobile) &&
