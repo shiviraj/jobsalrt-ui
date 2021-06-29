@@ -27,7 +27,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const isInclude = (list, item) => list.find(listItem => listItem.toLowerCase().trim() === item.toLowerCase().trim())
+const isInclude = (list, item) => list.find(listItem => item && listItem.toLowerCase().trim() === item.toLowerCase().trim())
 
 const FilterInput = ({title, filters, setFilters, keyName}) => {
   const classes = useStyles()
