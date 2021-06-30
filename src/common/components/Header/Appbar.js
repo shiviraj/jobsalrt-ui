@@ -1,7 +1,7 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import {AppBar, IconButton, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, IconButton, Link, Toolbar, Typography} from "@material-ui/core";
 import Searchbar from "./Searchbar";
 
 const useStyles = makeStyles((theme) => ({
@@ -17,7 +17,12 @@ const useStyles = makeStyles((theme) => ({
     display: 'block', [theme.breakpoints.up('md')]: {display: 'none',}
   },
   grow: {flexGrow: 1,},
-  title: {display: 'none', [theme.breakpoints.up('sm')]: {display: 'block',},},
+  title: {
+    display: 'none',
+    color: theme.palette.common.white,
+    "&>a:hover": {textDecoration: "none"},
+    [theme.breakpoints.up('sm')]: {display: 'block',},
+  },
 }));
 
 const Appbar = ({setOpenDrawer}) => {
@@ -35,7 +40,7 @@ const Appbar = ({setOpenDrawer}) => {
           <MenuIcon/>
         </IconButton>
         <Typography className={classes.title} variant="h6" noWrap>
-          <b>Jobs</b>Alrt
+          <Link href="/" color="inherit"><b>Jobs</b>Alrt</Link>
         </Typography>
         <Searchbar/>
         <div className={classes.grow}/>
