@@ -1,10 +1,12 @@
 import React from 'react';
 import JobsContainer from "./components/JobsContainer";
 import JobsContainerWithUrls from "./components/JobsContainerWithUrls";
+import HomeMenubar from "./components/HomeMenubar";
 
 const Home = () => {
   return (
     <div>
+      <HomeMenubar/>
       <JobsContainerWithUrls title="Trending Jobs"/>
       <JobsContainerWithUrls title="Recommended Jobs"/>
       <JobsContainer title="Latest Jobs"/>

@@ -15,6 +15,11 @@ const useStyles = makeStyles(theme => ({
     overflowX: "hidden",
     [theme.breakpoints.down("sm")]: {
       overflowX: "scroll",
+      msOverflowStyle: "none",
+      scrollbarWidth: "none",
+      "&::-webkit-scrollbar": {
+        display: "none"
+      }
     },
     transition: "margin 1s"
   },
