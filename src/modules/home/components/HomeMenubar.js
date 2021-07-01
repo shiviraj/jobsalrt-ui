@@ -5,7 +5,6 @@ import {
   BorderAll,
   DescriptionOutlined,
   FontDownloadOutlined,
-  HomeOutlined,
   MenuBookOutlined,
   NoteAddOutlined,
   PostAddOutlined,
@@ -44,9 +43,6 @@ const useStyles = makeStyles(theme => ({
 const HomeMenubar = () => {
   const classes = useStyles()
   return <div className={classes.menubar}>
-    <Link href="/">
-      <div className={classes.link}><HomeOutlined/>Home</div>
-    </Link>
     <Link href={"/all-jobs/page/1/posts"}>
       <div className={classes.link}><BorderAll/>All Jobs</div>
     </Link>
