@@ -14,8 +14,12 @@ const init = () => {
   return {...defaultHeaders, ...headers, iv: iv.toString("hex"), authorization: authToken}
 }
 
+const isClient = () => typeof window !== 'undefined'
+const target = process.env.BFF_URL || 'http://localhost:3001/'
+
 const utils = {
-  fetch(url, {data, ...options} = {}) {
+  fetch: function (url, {data, ...options} = {}) {
+    if (!isClient()) url = `${target.slice(0, -1)}${url}`
     return new Promise((resolve, reject) => {
         const headers = init()
         const payload = encryptRequest(data, headers)

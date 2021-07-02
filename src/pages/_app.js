@@ -8,14 +8,14 @@ import Layout from "../common/components/Layout";
 import {Router} from "next/router";
 import {onRouteChange} from "../utils/routing";
 
-const MyApp = ({Component, pageProps, ...rest}) => {
+const MyApp = ({Component, pageProps}) => {
   useEffect(() => {
     Router.events.on('routeChangeComplete', onRouteChange)
   }, [])
 
   return <Provider store={store}>
     <ThemeProvider theme={theme}>
-      <HeadTag common={store.getState().common}/>
+      <HeadTag/>
       <Layout>
         <Component {...pageProps} />
       </Layout>

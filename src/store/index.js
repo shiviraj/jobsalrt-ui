@@ -4,6 +4,7 @@ import {createReducerManager} from './reducer'
 import postsReducer from "../modules/posts/reducer";
 import postReducer from "../modules/post/reducer";
 import commonReducer from "../modules/common/reducer";
+import {createWrapper} from "next-redux-wrapper";
 
 const staticReducers = {
   posts: postsReducer,
@@ -18,16 +19,13 @@ const composeFn = (!isProduction && reduxDevTools) || compose
 
 const enhancers = composeFn(install())
 
-function configureStore(initialState, reducers) {
-  const reducerManager = createReducerManager(reducers)
-  const store = createStore(reducerManager.reduce, initialState, enhancers)
-
+const configureStore = () => {
+  const reducerManager = createReducerManager(staticReducers)
+  const store = createStore(reducerManager.reduce, {}, enhancers)
   store.reducerManager = reducerManager
-
   return store
-}
+};
 
-let store = configureStore({}, staticReducers)
-
-export {configureStore}
+const store = configureStore();
+export const wrapper = createWrapper(configureStore)
 export default store

@@ -2,8 +2,8 @@ import React, {useState} from 'react'
 import Head from 'next/head'
 import store from "../../store";
 
-const HeadTag = () => {
-  const [details] = useState(store.getState().common)
+const HeadTag = ({state}) => {
+  const [details] = useState(state || store.getState().common)
   return <Head>
     <title>{details.title}</title>
     <meta charSet="UTF-8"/>

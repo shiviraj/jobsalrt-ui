@@ -8,13 +8,14 @@ const defaultState = () => ({
   error: false,
   errorMessage: null,
   data: null,
+  postUrl: ""
 })
 
 const userReducer = (state = defaultState(), action) => {
   switch (action.type) {
 
     case GET_POST:
-      state = {...state, loading: true, error: false, errorMessage: null}
+      state = {...state, postUrl: action.payload, loading: true, error: false, errorMessage: null}
       return loop(state,
         Cmd.run(API.post.getPost, {
           args: [action.payload],
