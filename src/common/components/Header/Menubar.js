@@ -30,7 +30,7 @@ const useStyles = makeStyles({
   },
   active: {
     backgroundColor: theme.palette.primary.light,
-    color: theme.palette.common.white,
+    color: theme.palette.common.black,
     [theme.breakpoints.up('md')]: {
       borderBottom: `2px solid ${theme.palette.primary.dark}`,
     },
