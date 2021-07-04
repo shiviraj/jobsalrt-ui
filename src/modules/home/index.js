@@ -2,6 +2,7 @@ import React, {useEffect, useState} from 'react';
 import JobsContainer from "./components/JobsContainer";
 import HomeMenubar from "./components/HomeMenubar";
 import JobsContainerWithUrls from "./components/JobsContainerWithUrls";
+import API from "../../API";
 
 const Home = ({posts}) => {
   const [loading, setLoading] = useState(true)
@@ -27,5 +28,11 @@ const Home = ({posts}) => {
     </div>
   );
 };
+
+Home.getInitialProps = async function getStaticProps() {
+  const paths = ["latest-jobs", "admit-cards", "results", "answer-keys", "syllabus", "admissions"]
+  const result = await Promise.all(paths.map(path => API.posts.getPosts(path).catch(() => ([]))))
+  return {posts: result.reduce((allPosts, posts, index) => Object.assign(allPosts, {[paths[index]]: posts}), {})}
+}
 
 export default Home
