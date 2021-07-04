@@ -12,5 +12,6 @@ const userAgentContains = userAgentSubstring => {
 const isIOS = () => userAgentContains(IOS_UA_SUBSTRING)
 const isAndroid = () => userAgentContains(ANDROID_UA_SUBSTRING)
 const isMobile = () => isIOS() || isAndroid()
+const isClient = () => typeof window !== 'undefined'
 
-export {isIOS, isAndroid, isMobile}
+export {isIOS, isAndroid, isMobile, isClient}

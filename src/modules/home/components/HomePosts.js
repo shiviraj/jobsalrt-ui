@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   forwardArrow: {
     position: "absolute",
     right: 0,
-    margin: theme.spacing(-20, 0, 0, 0),
+    margin: theme.spacing(-16, 0, 0, 0),
     color: theme.palette.common.white,
     backgroundColor: theme.palette.primary.main,
     padding: theme.spacing(1),
@@ -51,7 +51,7 @@ const useStyles = makeStyles(theme => ({
     },
   },
   post: {
-    minWidth: theme.spacing(40),
+    minWidth: theme.spacing(36.7),
     padding: theme.spacing(0.25),
   }
 }))
@@ -68,7 +68,7 @@ const HomePosts = ({posts, loading, width}) => {
     if (postRef.current) {
       setWidths(() => ({container: width, item: postRef.current.offsetWidth}))
     }
-  }, [postRef.current, loading])
+  }, [postRef.current, width, loading])
 
 
   useEffect(() => {

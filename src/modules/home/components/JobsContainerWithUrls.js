@@ -8,7 +8,7 @@ import {StorageKeys} from "../../../constants/storage";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    marginBottom: theme.spacing(2),
+    marginBottom: theme.spacing(1),
     padding: theme.spacing(0, 1),
     [theme.breakpoints.down("sm")]: {
       padding: theme.spacing(0, 0.6),
@@ -35,7 +35,7 @@ const JobsContainerWithUrls = ({title}) => {
 
   useEffect(() => {
     containerRef.current && setWidth(containerRef.current.offsetWidth)
-  }, [containerRef.current])
+  }, [containerRef.current, category])
 
   useEffect(() => {
     setLoading(true)

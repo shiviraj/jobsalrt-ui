@@ -31,7 +31,7 @@ const PostSkeleton = () => {
       <Skeleton variant="rect" animation="wave" height={40} className={classes.skeleton}/>
     </div>
     <div className={classes.skeletonContainer}>
-      <Skeleton variant="rect" animation="wave" height={150} className={classes.skeleton}/>
+      <Skeleton variant="rect" animation="wave" height={120} className={classes.skeleton}/>
     </div>
   </div>
 };

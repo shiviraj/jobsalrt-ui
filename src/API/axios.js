@@ -3,6 +3,7 @@ import {getStorage} from "../utils/storage";
 import {StorageKeys} from "../constants/storage";
 import {decryptResponse, encryptRequest, iv} from "./crypto";
 import {generateRandomString} from "../utils/string";
+import {isClient} from "../utils/userAgent";
 
 export const defaultHeaders = {'Content-Type': 'application/json'}
 
@@ -14,7 +15,6 @@ const init = () => {
   return {...defaultHeaders, ...headers, iv: iv.toString("hex"), authorization: authToken}
 }
 
-const isClient = () => typeof window !== 'undefined'
 const target = process.env.BFF_URL || 'http://localhost:3001/'
 
 const utils = {

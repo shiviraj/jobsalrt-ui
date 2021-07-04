@@ -1,16 +1,17 @@
-import React from 'react'
+import React, {useEffect, useState} from 'react'
 import {Card, CardContent, Typography} from "@material-ui/core";
 import Link from "next/link"
 import {makeStyles} from "@material-ui/core/styles";
 import {truncate} from "../../../utils/string";
 import {formatDate} from "../../../utils/formatDate";
+import {isClient} from "../../../utils/userAgent";
 
 const useStyles = makeStyles(theme => ({
   root: {
-    width: theme.spacing(39),
+    width: theme.spacing(36),
     padding: theme.spacing(0.25),
     borderRadius: 0,
-    height: theme.spacing(32),
+    height: theme.spacing(27),
     cursor: "pointer",
     border: `1px solid ${theme.palette.primary.extraLight}`,
     boxShadow: theme.shadows[1],
@@ -34,7 +35,7 @@ const useStyles = makeStyles(theme => ({
     display: 'flex',
     justifyContent: "center",
     padding: theme.spacing(0.5),
-    height: theme.spacing(12),
+    height: theme.spacing(8),
   },
   logo: {
     maxWidth: "95%",
@@ -44,11 +45,16 @@ const useStyles = makeStyles(theme => ({
 
 const HomePost = ({post}) => {
   const classes = useStyles()
+  const [client, setClient] = useState(false)
+
+  useEffect(() => {
+    setClient(isClient())
+  }, [post])
 
   return <Link href={`/post/${post.url}`}>
     <Card className={classes.root}>
       <CardContent className={classes.logoContainer}>
-        <img className={classes.logo} src={post.postLogo || "/logo.png"} alt={truncate(50)(post.name)}/>
+        {client && <img className={classes.logo} src={post.postLogo || "/logo.png"} alt={truncate(50)(post.name)}/>}
       </CardContent>
       <CardContent className={classes.cardContent}>
         <Typography variant="subtitle2" className={classes.title}>{truncate(50)(post.name)}</Typography>
@@ -56,7 +62,7 @@ const HomePost = ({post}) => {
         {post.lastDate &&
         <Typography variant="body2"><b>Last Date :</b> &nbsp; {formatDate(post.lastDate)} </Typography>}
         {post.company &&
-        <Typography variant="body2"><b>Organisation :</b> &nbsp; {truncate(32)(post.company.replaceAll(/\(.*\)/g, ""))}
+        <Typography variant="body2"><b>Organisation :</b> &nbsp; {truncate(32)(post.company.replace(/\(.*\)/g, ""))}
         </Typography>}
         <Typography variant="body2"><b>Vacancy :</b> &nbsp; {post.vacancies || "Not Specified"} </Typography>
         <Typography variant="body2"><b>Last Update :</b> &nbsp; {formatDate(post.postUpdateDate)} </Typography>
