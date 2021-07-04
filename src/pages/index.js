@@ -1,19 +1,11 @@
-import {connect} from 'react-redux'
 import Home from "../modules/home";
-import {setFilters} from "../modules/posts/actions";
+import API from "../API";
 
-export const mapStateToProps = state => {
-  return {
-    loading: state.posts.loading,
-    error: state.posts.error,
-    errorMessage: state.posts.errorMessage,
-  }
+export async function getStaticProps() {
+  const paths = ["latest-jobs", "admit-cards", "results", "answer-keys", "syllabus", "admissions"]
+  const result = await Promise.all(paths.map(path => API.posts.getPosts(path).catch(() => ([]))))
+  const posts = result.reduce((allPosts, posts, index) => Object.assign(allPosts, {[paths[index]]: posts}), {})
+  return {props: {posts}}
 }
 
-export const mapDispatchToProps = dispatch => {
-  return {
-    setFilters: (payload) => dispatch(setFilters(payload)),
-  }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Home)
+export default Home
