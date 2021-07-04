@@ -104,7 +104,7 @@ const HomePosts = ({posts, loading, width}) => {
   }
 
   return <div className={classes.postsContainer}>
-    {index !== 0 && <IconButton className={classes.backArrow} onClick={handleBackward}>
+    {index !== 0 && <IconButton className={classes.backArrow} aria-label="backward" onClick={handleBackward}>
       <ArrowBack fontSize="small"/>
     </IconButton>}
     <div className={classes.posts} style={{marginLeft: margin}}>
@@ -117,7 +117,7 @@ const HomePosts = ({posts, loading, width}) => {
       }
     </div>
     {maxIndex !== index &&
-    <IconButton className={classes.forwardArrow} onClick={handleForward}>
+    <IconButton className={classes.forwardArrow} aria-label="forward" onClick={handleForward}>
       <ArrowForward fontSize="small"/>
     </IconButton>}
   </div>

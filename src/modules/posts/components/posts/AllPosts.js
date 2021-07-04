@@ -5,7 +5,7 @@ import PostSkeleton from "../../../../common/components/PostSkeleton";
 import Post from "./Post";
 
 const useStyles = makeStyles(theme => ({
-  container: {margin: theme.spacing(1)},
+  container: {margin: theme.spacing(0, 1)},
   noPost: {margin: theme.spacing(20), color: theme.palette.error.light},
 }));
 
@@ -16,7 +16,7 @@ const AllPosts = ({posts, loading, type}) => {
   if (!posts.length) return <Typography variant="h3" className={classes.noPost}>No Post Found...</Typography>
   return <Grid container className={classes.container}>
     {
-      posts.map((post, index) => <Grid item sm={6} lg={3} md={4} xs={12} key={`${post.source}_${index}`}>
+      posts.map((post, index) => <Grid item xl={2} lg={3} md={4} sm={6} xs={12} key={`${post.source}_${index}`}>
         <Post post={post}/>
       </Grid>)
     }

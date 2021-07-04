@@ -11,7 +11,8 @@ const useStyles = makeStyles(theme => ({
     margin: theme.spacing(0.2),
     padding: theme.spacing(0.25),
     borderRadius: 0,
-    height: theme.spacing(34),
+    border: `1px solid ${theme.palette.grey[300]}`,
+    height: theme.spacing(27),
     boxShadow: theme.shadows[0],
     cursor: "pointer",
     '&:hover': {
@@ -43,7 +44,7 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(0.5),
   },
   logo: {
-    height: theme.spacing(12),
+    height: theme.spacing(8),
     maxWidth: "100%"
   },
 }));
