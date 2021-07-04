@@ -10,7 +10,7 @@ const useStyles = makeStyles(theme => ({
     }
   },
   titleBar: {
-    padding: theme.spacing(1),
+    padding: theme.spacing(0.5, 1),
     backgroundColor: theme.palette.primary.main,
     color: theme.palette.common.white,
     [theme.breakpoints.down("xs")]: {
@@ -23,7 +23,8 @@ const useStyles = makeStyles(theme => ({
 const StyledTableCell = withStyles((theme) => ({
   head: {
     fontSize: 18,
-    // border: `1px solid ${theme.palette.primary.light}`,
+    padding: theme.spacing(1),
+    border: `1px solid ${theme.palette.primary.light}`,
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(0.5),
       fontSize: 14,
@@ -31,7 +32,8 @@ const StyledTableCell = withStyles((theme) => ({
   },
   body: {
     fontSize: 14,
-    // border: `1px solid ${theme.palette.primary.light}`,
+    padding: theme.spacing(1),
+    border: `1px solid ${theme.palette.primary.light}`,
     [theme.breakpoints.down("xs")]: {
       padding: theme.spacing(0.5),
       fontSize: 13,
