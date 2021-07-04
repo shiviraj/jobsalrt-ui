@@ -43,7 +43,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const HomePost = ({post}) => {
+const HomePost = ({post, loading}) => {
   const classes = useStyles()
   const [client, setClient] = useState(false)
 
@@ -54,7 +54,8 @@ const HomePost = ({post}) => {
   return <Link href={`/post/${post.url}`}>
     <Card className={classes.root}>
       <CardContent className={classes.logoContainer}>
-        {client && <img className={classes.logo} src={post.postLogo || "/logo.png"} alt={truncate(50)(post.name)}/>}
+        {client && !loading &&
+        <img className={classes.logo} src={post.postLogo || "/logo.png"} alt={truncate(50)(post.name)}/>}
       </CardContent>
       <CardContent className={classes.cardContent}>
         <Typography variant="subtitle2" className={classes.title}>{truncate(50)(post.name)}</Typography>

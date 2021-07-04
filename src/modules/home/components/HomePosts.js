@@ -89,7 +89,7 @@ const HomePosts = ({posts, loading, width}) => {
   const handleBackward = () => setIndex(Math.max(index - 1, 0))
   const handleForward = () => setIndex(Math.min(index + 1, maxIndex))
 
-  if (loading) {
+  if (loading && posts.length === 0) {
     return <div className={classes.postsContainer}>
       <div className={classes.posts}>
         {
@@ -111,7 +111,7 @@ const HomePosts = ({posts, loading, width}) => {
       {
         posts.map((post, index) => {
           return <div key={index} className={classes.post} ref={postRef}>
-            <HomePost post={post}/>
+            <HomePost post={post} loading={loading}/>
           </div>;
         })
       }

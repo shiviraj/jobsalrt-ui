@@ -1,22 +1,30 @@
-import React from 'react';
+import React, {useEffect, useState} from 'react';
 import JobsContainer from "./components/JobsContainer";
 import HomeMenubar from "./components/HomeMenubar";
 import API from "../../API";
 import JobsContainerWithUrls from "./components/JobsContainerWithUrls";
+import {isClient} from "../../utils/userAgent";
 
 const Home = ({posts}) => {
+  const [client, setClient] = useState(false)
+  const [loading, setLoading] = useState(true)
+
+  useEffect(() => {
+    setClient(isClient())
+  }, [posts])
+
   return (
     <div>
       <HomeMenubar/>
-      <JobsContainerWithUrls title="Trending Jobs"/>
-      <JobsContainerWithUrls title="Recommended Jobs"/>
-      <JobsContainer title="Latest Jobs" posts={posts["latest-jobs"]}/>
-      <JobsContainer title="Admit Cards" posts={posts["admit-cards"]}/>
-      <JobsContainer title="Results" posts={posts["results"]}/>
-      <JobsContainer title="Answer Keys" posts={posts["answer-keys"]}/>
-      <JobsContainer title="Syllabus" posts={posts["syllabus"]}/>
-      <JobsContainer title="Admissions" posts={posts["admissions"]}/>
-      <JobsContainerWithUrls title="Recently Viewed"/>
+      {client && <JobsContainerWithUrls title="Trending Jobs" loading={loading} setLoading={setLoading}/>}
+      {client && <JobsContainerWithUrls title="Recommended Jobs" loading={loading} setLoading={setLoading}/>}
+      <JobsContainer title="Latest Jobs" posts={posts["latest-jobs"]} loading={loading}/>
+      <JobsContainer title="Admit Cards" posts={posts["admit-cards"]} loading={loading}/>
+      <JobsContainer title="Results" posts={posts["results"]} loading={loading}/>
+      <JobsContainer title="Answer Keys" posts={posts["answer-keys"]} loading={loading}/>
+      <JobsContainer title="Syllabus" posts={posts["syllabus"]} loading={loading}/>
+      <JobsContainer title="Admissions" posts={posts["admissions"]} loading={loading}/>
+      {client && <JobsContainerWithUrls title="Recently Viewed" loading={loading} setLoading={setLoading}/>}
     </div>
   );
 };

@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const JobsContainer = ({title, posts}) => {
+const JobsContainer = ({title, posts, loading}) => {
   const category = title.split(" ").join('-').toLowerCase()
   const [width, setWidth] = useState(0)
 
@@ -39,7 +39,7 @@ const JobsContainer = ({title, posts}) => {
         <Button variant="contained" color="primary" size="small">View all</Button>
       </Link>
     </div>
-    <HomePosts posts={posts} width={width}/>
+    <HomePosts posts={posts} width={width} loading={loading}/>
   </div>
 }
 

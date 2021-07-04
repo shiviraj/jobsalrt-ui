@@ -23,10 +23,9 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const JobsContainerWithUrls = ({title}) => {
+const JobsContainerWithUrls = ({title, loading, setLoading}) => {
   const category = title.split(" ").join('_').toUpperCase()
   const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(false)
   const [width, setWidth] = useState(0)
 
   const classes = useStyles()
