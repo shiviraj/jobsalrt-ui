@@ -1,7 +1,8 @@
 import React from 'react';
+import Link from "next/link"
 import {makeStyles} from '@material-ui/core/styles';
 import MenuIcon from '@material-ui/icons/Menu';
-import {AppBar, IconButton, Link, Toolbar, Typography} from "@material-ui/core";
+import {AppBar, IconButton, Toolbar, Typography} from "@material-ui/core";
 import Searchbar from "./Searchbar";
 
 const useStyles = makeStyles((theme) => ({
@@ -40,7 +41,7 @@ const Appbar = ({setOpenDrawer}) => {
           <MenuIcon/>
         </IconButton>
         <Typography className={classes.title} variant="h6" noWrap>
-          <Link href="/" color="inherit"><b>Jobs</b>Alrt</Link>
+          <Link href="/"><span><b>Jobs</b>Alrt</span></Link>
         </Typography>
         <Searchbar/>
         <div className={classes.grow}/>

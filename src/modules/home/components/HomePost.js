@@ -45,16 +45,19 @@ const useStyles = makeStyles(theme => ({
 
 const HomePost = ({post, loading}) => {
   const classes = useStyles()
-  const [client, setClient] = useState(false)
+  const [enableLoading, setEnableLoading] = useState(false)
 
   useEffect(() => {
-    setClient(isClient())
-  }, [post])
+    if (isClient() && !loading) {
+      setEnableLoading(true)
+    }
+  }, [post, loading])
+
 
   return <Link href={`/post/${post.url}`}>
     <Card className={classes.root}>
       <CardContent className={classes.logoContainer}>
-        {client && !loading &&
+        {enableLoading &&
         <img className={classes.logo} src={post.postLogo || "/logo.png"} alt={truncate(50)(post.name)}/>}
       </CardContent>
       <CardContent className={classes.cardContent}>
