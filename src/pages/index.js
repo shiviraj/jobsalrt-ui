@@ -6,6 +6,7 @@ export const getStaticProps = async () => {
   const result = await Promise.all(paths.map(path => API.posts.getPosts(path).catch(() => ([]))))
   const posts = result.reduce((allPosts, posts, index) => Object.assign(allPosts, {[paths[index]]: posts}), {})
   posts["trending-jobs"] = await API.posts.getPostsWithUrls("TRENDING_JOBS", [])
+  posts["recommended-jobs"] = await API.posts.getPostsWithUrls("RECOMMENDED_JOBS", [])
   return {props: {posts}, revalidate: 3600}
 };
 

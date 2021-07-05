@@ -8,36 +8,35 @@ import API from "../../API";
 
 const Home = ({posts}) => {
   const [loading, setLoading] = useState(true)
-  const [loading1, setLoading1] = useState(true)
-  const [recommendedPosts, setRecommendedPosts] = useState([])
   const [recentlyVisitedPosts, setRecentlyVisitedPosts] = useState([])
 
-  const getPosts = (category, setPosts, setLoading) => {
+  useEffect(() => {
     setLoading(true)
     const recentlyViewed = getStorage(StorageKeys.RECENTLY_VIEWED) || []
-    API.posts.getPostsWithUrls(category, recentlyViewed)
-      .then(p => setPosts(p))
+    API.posts.getPostsWithUrls("RECENTLY_VIEWED", recentlyViewed)
+      .then(p => {
+        setRecentlyVisitedPosts(p);
+        posts["recommended-jobs"] = p.concat(posts["recommended-jobs"])
+          .sort((_a, _b) => Math.random() - 0.5)
+          .sort((_a, _b) => Math.random() - 0.5)
+          .slice(0, 48)
+      })
       .catch(() => ({}))
       .then(() => setLoading(false))
-  }
-
-  useEffect(() => {
-    getPosts("RECOMMENDED_JOBS", setRecommendedPosts, setLoading)
-    getPosts("RECENTLY_VIEWED", setRecentlyVisitedPosts, setLoading1)
   }, [])
 
   return (
     <div>
       <HomeMenubar/>
-      <JobsContainerWithUrls title="Trending Jobs" posts={posts["trending-jobs"]} loading={loading || loading1}/>
-      <JobsContainerWithUrls title="Recommended Jobs" loading={loading} posts={recommendedPosts}/>
-      <JobsContainer title="Latest Jobs" posts={posts["latest-jobs"]} loading={loading || loading1}/>
-      <JobsContainer title="Admit Cards" posts={posts["admit-cards"]} loading={loading || loading1}/>
-      <JobsContainer title="Results" posts={posts["results"]} loading={loading || loading1}/>
-      <JobsContainer title="Answer Keys" posts={posts["answer-keys"]} loading={loading || loading1}/>
-      <JobsContainer title="Syllabus" posts={posts["syllabus"]} loading={loading || loading1}/>
-      <JobsContainer title="Admissions" posts={posts["admissions"]} loading={loading || loading1}/>
-      <JobsContainerWithUrls title="Recently Viewed" loading={loading1} posts={recentlyVisitedPosts}/>
+      <JobsContainerWithUrls title="Trending Jobs" posts={posts["trending-jobs"]} loading={loading}/>
+      <JobsContainerWithUrls title="Recommended Jobs" loading={loading} posts={posts["recommended-jobs"]}/>
+      <JobsContainer title="Latest Jobs" posts={posts["latest-jobs"]} loading={loading}/>
+      <JobsContainer title="Admit Cards" posts={posts["admit-cards"]} loading={loading}/>
+      <JobsContainer title="Results" posts={posts["results"]} loading={loading}/>
+      <JobsContainer title="Answer Keys" posts={posts["answer-keys"]} loading={loading}/>
+      <JobsContainer title="Syllabus" posts={posts["syllabus"]} loading={loading}/>
+      <JobsContainer title="Admissions" posts={posts["admissions"]} loading={loading}/>
+      <JobsContainerWithUrls title="Recently Viewed" loading={loading} posts={recentlyVisitedPosts}/>
     </div>
   );
 };

@@ -58,7 +58,7 @@ const HomePost = ({post, loading}) => {
     <Card className={classes.root}>
       <CardContent className={classes.logoContainer}>
         {enableLoading &&
-        <img className={classes.logo} src={post.postLogo || "/logo.png"} alt={truncate(50)(post.name)}/>}
+        <img className={classes.logo} loading="lazy" src={post.postLogo || "/logo.png"} alt={truncate(50)(post.name)}/>}
       </CardContent>
       <CardContent className={classes.cardContent}>
         <Typography variant="subtitle2" className={classes.title}>{truncate(50)(post.name)}</Typography>
