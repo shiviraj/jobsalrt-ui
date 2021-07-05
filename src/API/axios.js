@@ -14,11 +14,8 @@ const init = () => {
   return {...defaultHeaders, ...headers, iv: iv.toString("hex"), authorization: authToken}
 }
 
-const target = process.env.BFF_URL
-
 const utils = {
   fetch: function (url, {data, ...options} = {}) {
-    url = `${target.slice(0, -1)}${url}`
     return new Promise((resolve, reject) => {
         const headers = init()
         const payload = encryptRequest(data, headers)

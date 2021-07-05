@@ -5,8 +5,8 @@
   "scripts": {
     "dev": "next",
     "build": "next build && npm run export",
-    "build:prod": "BFF_URL=https://jobsalrt-bff.herokuapp.com/ next build",
-    "start": "NODE_ENV=production BFF_URL=https://jobsalrt-bff.herokuapp.com/ next start -p $PORT",
+    "build:prod": "next build",
+    "start": "NODE_ENV=production next start -p $PORT",
     "export": "next export"
   },
   "dependencies": {

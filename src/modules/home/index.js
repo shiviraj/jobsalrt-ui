@@ -12,10 +12,9 @@ const Home = ({posts}) => {
   const [recommendedPosts, setRecommendedPosts] = useState([])
   const [recentlyVisitedPosts, setRecentlyVisitedPosts] = useState([])
 
-  const recentlyViewed = getStorage(StorageKeys.RECENTLY_VIEWED) || []
-
   const getPosts = (category, setPosts, setLoading) => {
     setLoading(true)
+    const recentlyViewed = getStorage(StorageKeys.RECENTLY_VIEWED) || []
     API.posts.getPostsWithUrls(category, recentlyViewed)
       .then(p => setPosts(p))
       .catch(() => ({}))
@@ -30,14 +29,14 @@ const Home = ({posts}) => {
   return (
     <div>
       <HomeMenubar/>
-      <JobsContainerWithUrls title="Trending Jobs" posts={posts["trending-jobs"]}/>
+      <JobsContainerWithUrls title="Trending Jobs" posts={posts["trending-jobs"]} loading={loading || loading1}/>
       <JobsContainerWithUrls title="Recommended Jobs" loading={loading} posts={recommendedPosts}/>
-      <JobsContainer title="Latest Jobs" posts={posts["latest-jobs"]}/>
-      <JobsContainer title="Admit Cards" posts={posts["admit-cards"]}/>
-      <JobsContainer title="Results" posts={posts["results"]}/>
-      <JobsContainer title="Answer Keys" posts={posts["answer-keys"]}/>
-      <JobsContainer title="Syllabus" posts={posts["syllabus"]}/>
-      <JobsContainer title="Admissions" posts={posts["admissions"]}/>
+      <JobsContainer title="Latest Jobs" posts={posts["latest-jobs"]} loading={loading || loading1}/>
+      <JobsContainer title="Admit Cards" posts={posts["admit-cards"]} loading={loading || loading1}/>
+      <JobsContainer title="Results" posts={posts["results"]} loading={loading || loading1}/>
+      <JobsContainer title="Answer Keys" posts={posts["answer-keys"]} loading={loading || loading1}/>
+      <JobsContainer title="Syllabus" posts={posts["syllabus"]} loading={loading || loading1}/>
+      <JobsContainer title="Admissions" posts={posts["admissions"]} loading={loading || loading1}/>
       <JobsContainerWithUrls title="Recently Viewed" loading={loading1} posts={recentlyVisitedPosts}/>
     </div>
   );
