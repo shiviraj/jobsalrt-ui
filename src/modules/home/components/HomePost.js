@@ -53,7 +53,6 @@ const HomePost = ({post, loading}) => {
     }
   }, [post, loading])
 
-
   return <Link href={`/post/${post.url}`}>
     <Card className={classes.root}>
       <CardContent className={classes.logoContainer}>
