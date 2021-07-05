@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   },
   logo: {
     maxWidth: "95%",
-    height: "auto"
+    height: theme.spacing(8),
   },
 }));
 
