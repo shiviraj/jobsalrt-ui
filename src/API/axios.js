@@ -3,7 +3,6 @@ import {getStorage} from "../utils/storage";
 import {StorageKeys} from "../constants/storage";
 import {decryptResponse, encryptRequest, iv} from "./crypto";
 import {generateRandomString} from "../utils/string";
-import {isClient} from "../utils/userAgent";
 
 export const defaultHeaders = {'Content-Type': 'application/json'}
 
@@ -15,11 +14,11 @@ const init = () => {
   return {...defaultHeaders, ...headers, iv: iv.toString("hex"), authorization: authToken}
 }
 
-const target = process.env.BFF_URL || 'http://localhost:3001/'
+const target = process.env.BFF_URL
 
 const utils = {
   fetch: function (url, {data, ...options} = {}) {
-    if (!isClient()) url = `${target.slice(0, -1)}${url}`
+    url = `${target.slice(0, -1)}${url}`
     return new Promise((resolve, reject) => {
         const headers = init()
         const payload = encryptRequest(data, headers)
