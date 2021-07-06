@@ -23,14 +23,4 @@ const getStorage = key => {
   }
 };
 
-const clearStorage = () => {
-  if (typeof window === UNDEFINED) return
-  window[storageLocation()].clear()
-};
-
-const removeFromStorage = key => {
-  if (typeof window === UNDEFINED) return
-  window[storageLocation()].removeItem(key)
-};
-
-export {setStorage, getStorage, clearStorage, removeFromStorage}
+export {setStorage, getStorage}

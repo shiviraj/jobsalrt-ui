@@ -1,10 +1,9 @@
-import React, {useEffect, useState} from 'react'
+import React from 'react'
 import {Card, CardContent, Typography} from "@material-ui/core";
 import Link from "next/link"
 import {makeStyles} from "@material-ui/core/styles";
 import {truncate} from "../../../utils/string";
 import {formatDate} from "../../../utils/formatDate";
-import {isClient} from "../../../utils/userAgent";
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -43,21 +42,13 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const HomePost = ({post, loading}) => {
+const HomePost = ({post}) => {
   const classes = useStyles()
-  const [enableLoading, setEnableLoading] = useState(false)
-
-  useEffect(() => {
-    if (isClient() && !loading) {
-      setEnableLoading(true)
-    }
-  }, [post, loading])
 
   return <Link href={`/post/${post.url}`}>
     <Card className={classes.root}>
       <CardContent className={classes.logoContainer}>
-        {enableLoading &&
-        <img className={classes.logo} loading="lazy" src={post.postLogo || "/logo.png"} alt={truncate(50)(post.name)}/>}
+        <img className={classes.logo} loading="lazy" src={post.postLogo || "/logo.png"} alt={truncate(50)(post.name)}/>
       </CardContent>
       <CardContent className={classes.cardContent}>
         <Typography variant="subtitle2" className={classes.title}>{truncate(50)(post.name)}</Typography>
@@ -74,4 +65,4 @@ const HomePost = ({post, loading}) => {
   </Link>
 }
 
-export default HomePost
+export default React.memo(HomePost)

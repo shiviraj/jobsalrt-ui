@@ -1,15 +1,13 @@
 import React from "react";
 import Link from "next/link";
 import {makeStyles} from "@material-ui/styles";
-import {
-  BorderAll,
-  DescriptionOutlined,
-  FontDownloadOutlined,
-  MenuBookOutlined,
-  NoteAddOutlined,
-  PostAddOutlined,
-  SchoolOutlined
-} from "@material-ui/icons";
+import BorderAll from "@material-ui/icons/BorderAll";
+import NoteAddOutlined from "@material-ui/icons/NoteAddOutlined";
+import DescriptionOutlined from "@material-ui/icons/DescriptionOutlined";
+import FontDownloadOutlined from "@material-ui/icons/FontDownloadOutlined";
+import MenuBookOutlined from "@material-ui/icons/MenuBookOutlined";
+import PostAddOutlined from "@material-ui/icons/PostAddOutlined";
+import SchoolOutlined from "@material-ui/icons/SchoolOutlined";
 
 const useStyles = makeStyles(theme => ({
   menubar: {

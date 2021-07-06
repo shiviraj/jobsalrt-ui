@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const JobsContainerWithUrls = ({title, loading, posts}) => {
+const JobsContainerWithUrls = ({title, posts}) => {
   const category = title.split(" ").join('_').toUpperCase()
   const [width, setWidth] = useState(0)
 
@@ -36,7 +36,7 @@ const JobsContainerWithUrls = ({title, loading, posts}) => {
     <div className={classes.header} ref={containerRef}>
       <Typography variant="h6">{title}</Typography>
     </div>
-    <HomePosts posts={posts} loading={loading} width={width}/>
+    <HomePosts posts={posts} width={width}/>
   </div>
 }
 

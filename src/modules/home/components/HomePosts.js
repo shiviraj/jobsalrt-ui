@@ -1,7 +1,6 @@
 import {IconButton} from "@material-ui/core";
 import {ArrowBack, ArrowForward} from "@material-ui/icons";
 import HomePost from "./HomePost";
-import PostSkeleton from "../../post/components/PostSkeleton";
 import React, {createRef, useEffect, useState} from "react";
 import {makeStyles} from "@material-ui/styles";
 
@@ -56,52 +55,31 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const HomePosts = ({posts, loading, width}) => {
+const HomePosts = ({posts, width}) => {
+  const item = 298
   const classes = useStyles()
   const [index, setIndex] = useState(0)
   const [maxIndex, setMaxIndex] = useState(0)
-  const [widths, setWidths] = useState(null)
   const [margin, setMargin] = useState(0)
   const postRef = createRef()
 
   useEffect(() => {
-    if (postRef.current) {
-      setWidths(() => ({container: width, item: postRef.current.offsetWidth}))
-    }
-  }, [postRef.current, width, loading])
-
-
-  useEffect(() => {
-    if (posts.length && widths) {
-      const itemsInRow = Math.floor(widths.container / widths.item);
+    if (posts.length && width) {
+      const itemsInRow = Math.floor(width / item);
       setMaxIndex(Math.floor(posts.length / itemsInRow));
     }
-  }, [widths])
+  }, [width])
 
   useEffect(() => {
-    if (widths) {
-      const items = Math.floor(widths.container / widths.item)
-      const margin = (maxIndex === index && maxIndex !== 0) ? (posts.length * widths.item) - width : (Math.floor(items * widths.item * index))
+    if (width) {
+      const items = Math.floor(width / item)
+      const margin = (maxIndex === index && maxIndex !== 0) ? (posts.length * item) - width : (Math.floor(items * item * index))
       setMargin(-margin)
     }
   }, [index])
 
   const handleBackward = () => setIndex(Math.max(index - 1, 0))
   const handleForward = () => setIndex(Math.min(index + 1, maxIndex))
-
-  if (loading && posts.length === 0) {
-    return <div className={classes.postsContainer}>
-      <div className={classes.posts}>
-        {
-          Array(12).fill("").map((post, index) => {
-            return <div key={index} className={classes.post}>
-              <PostSkeleton/>
-            </div>
-          })
-        }
-      </div>
-    </div>
-  }
 
   return <div className={classes.postsContainer}>
     {index !== 0 && <IconButton className={classes.backArrow} aria-label="backward" onClick={handleBackward}>
@@ -110,8 +88,8 @@ const HomePosts = ({posts, loading, width}) => {
     <div className={classes.posts} style={{marginLeft: margin}}>
       {
         posts.map((post, index) => {
-          return <div key={index} className={classes.post} ref={postRef}>
-            <HomePost post={post} loading={loading}/>
+          return <div key={index} className={classes.post} ref={index === 0 ? postRef : null}>
+            <HomePost post={post}/>
           </div>;
         })
       }
@@ -123,4 +101,4 @@ const HomePosts = ({posts, loading, width}) => {
   </div>
 }
 
-export default HomePosts
+export default React.memo(HomePosts)

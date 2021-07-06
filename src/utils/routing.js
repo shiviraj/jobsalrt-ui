@@ -7,12 +7,4 @@ const onRouteChange = () => {
   handleRouteChange()
 }
 
-const redirectTo = (path, tab) => {
-  if (window.location.pathname === path) return
-  if (tab) {
-    return window.open(path)
-  }
-  window.location.assign(path)
-}
-
-export {onRouteChange, redirectTo}
+export {onRouteChange}

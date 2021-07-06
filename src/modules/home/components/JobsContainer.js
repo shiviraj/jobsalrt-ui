@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
   }
 }))
 
-const JobsContainer = ({title, posts, loading}) => {
+const JobsContainer = ({title, posts}) => {
   const category = title.split(" ").join('-').toLowerCase()
   const [width, setWidth] = useState(0)
 
@@ -39,8 +39,8 @@ const JobsContainer = ({title, posts, loading}) => {
         <Button variant="contained" color="primary" size="small">View all</Button>
       </Link>
     </div>
-    <HomePosts posts={posts} width={width} loading={loading}/>
+    <HomePosts posts={posts} width={width}/>
   </div>
 }
 
-export default JobsContainer
+export default React.memo(JobsContainer)
