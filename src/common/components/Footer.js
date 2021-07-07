@@ -14,6 +14,7 @@ const useStyles = makeStyles((theme) => ({
   },
   gridContainer: {
     padding: theme.spacing(2),
+    width: "100vw",
     background: theme.palette.primary.main,
     [theme.breakpoints.down("md")]: {
       padding: theme.spacing(0),

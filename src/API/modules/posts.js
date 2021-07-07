@@ -3,7 +3,7 @@ import axios from "../axios";
 
 const posts = (host = '') => {
   return {
-    postsCount(type, filters, search) {
+    postsCount(type, filters = {}, search = "") {
       const options = {data: {filters, search}, method: METHODS.POST}
       return axios.fetch(`${host}/api/posts/type/${type}/posts-count`, options)
     },
