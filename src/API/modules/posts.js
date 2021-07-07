@@ -7,12 +7,12 @@ const posts = (host = '') => {
       const options = {data: {filters, search}, method: METHODS.POST}
       return axios.fetch(`${host}/api/posts/type/${type}/posts-count`, options)
     },
-    getPosts(type, filters = {}, search = "", currentPage = 1, count = 48) {
-      const options = {data: {filters, search, count}, method: METHODS.POST}
+    getPosts(type, filters = {}, search = "", currentPage = 1) {
+      const options = {data: {filters, search}, method: METHODS.POST}
       return axios.fetch(`${host}/api/posts/type/${type}/page/${currentPage}`, options)
     },
     getPostsWithUrls(type, urls,) {
-      const options = {data: {urls, count: 36}, method: METHODS.POST}
+      const options = {data: {urls}, method: METHODS.POST}
       return axios.fetch(`${host}/api/posts/type/${type}`, options)
     },
     getOptions(key, text) {

@@ -126,7 +126,7 @@ const Searchbar = () => {
         inputProps={{'aria-label': 'search'}}
       />
       <Button size="small" className={classes.searchIcon} aria-label="search" onClick={() => handleAdd(inputText)}>
-        <Search fontSize="small"/>
+        <Search fontSize="small" aria-label={"search"}/>
       </Button>
     </div>
     <div className={classes.suggestions}>

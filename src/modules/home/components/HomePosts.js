@@ -61,6 +61,7 @@ const HomePosts = ({posts, width}) => {
   const [index, setIndex] = useState(0)
   const [maxIndex, setMaxIndex] = useState(0)
   const [margin, setMargin] = useState(0)
+  const [visiblePosts, setVisiblePosts] = useState(posts.slice(0, 10))
   const postRef = createRef()
 
   useEffect(() => {
@@ -70,11 +71,19 @@ const HomePosts = ({posts, width}) => {
     }
   }, [width])
 
+  const showAllPosts = () => {
+    if (visiblePosts.length <= 8) {
+      setVisiblePosts(posts)
+    }
+  }
+
   useEffect(() => {
     if (width) {
       const items = Math.floor(width / item)
       const margin = (maxIndex === index && maxIndex !== 0) ? (posts.length * item) - width : (Math.floor(items * item * index))
       setMargin(-margin)
+      setVisiblePosts(posts)
+      showAllPosts()
     }
   }, [index])
 
@@ -85,9 +94,9 @@ const HomePosts = ({posts, width}) => {
     {index !== 0 && <IconButton className={classes.backArrow} aria-label="backward" onClick={handleBackward}>
       <ArrowBack fontSize="small"/>
     </IconButton>}
-    <div className={classes.posts} style={{marginLeft: margin}}>
+    <div className={classes.posts} style={{marginLeft: margin}} onScroll={showAllPosts}>
       {
-        posts.map((post, index) => {
+        visiblePosts.map((post, index) => {
           return <div key={index} className={classes.post} ref={index === 0 ? postRef : null}>
             <HomePost post={post}/>
           </div>;

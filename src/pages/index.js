@@ -3,7 +3,7 @@ import API from "../API";
 
 export const getStaticProps = async () => {
   const paths = ["latest-jobs", "admit-cards", "results", "answer-keys", "syllabus", "admissions"]
-  const result = await Promise.all(paths.map(path => API.posts.getPosts(path, {}, "", 1, 24).catch(() => ([]))))
+  const result = await Promise.all(paths.map(path => API.posts.getPosts(path, {}, "", 1).catch(() => ([]))))
   const posts = result.reduce((allPosts, posts, index) => Object.assign(allPosts, {[paths[index]]: posts}), {})
   posts["trending-jobs"] = await API.posts.getPostsWithUrls("TRENDING_JOBS", [])
   posts["recommended-jobs"] = await API.posts.getPostsWithUrls("RECOMMENDED_JOBS", [])

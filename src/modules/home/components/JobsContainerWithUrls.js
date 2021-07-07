@@ -33,9 +33,7 @@ const JobsContainerWithUrls = ({title, posts}) => {
 
 
   return <div className={classes.root}>
-    <div className={classes.header} ref={containerRef}>
-      <Typography variant="h6">{title}</Typography>
-    </div>
+    <Typography className={classes.header} ref={containerRef} variant="h6">{title}</Typography>
     <HomePosts posts={posts} width={width}/>
   </div>
 }
