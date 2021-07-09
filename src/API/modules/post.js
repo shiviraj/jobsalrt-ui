@@ -5,6 +5,9 @@ const post = (host = '') => {
     getPost(url) {
       return axios.fetch(`${host}/api/post/${url}`)
     },
+    updateViews(url) {
+      return axios.fetch(`${host}/api/post/${url}/update-views`)
+    }
   }
 }
 

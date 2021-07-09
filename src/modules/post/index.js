@@ -7,6 +7,7 @@ import {getStorage, setStorage} from "../../utils/storage";
 import {StorageKeys} from "../../constants/storage";
 import {makeStyles} from "@material-ui/styles";
 import HeadTag from "../../common/components/HeadTag";
+import API from "../../API";
 
 const useStyles = makeStyles(theme => ({
   noPost: {
@@ -37,6 +38,7 @@ const Post = ({post}) => {
       const urls = recentlyViewed.filter((item, index) => !recentlyViewed.slice(0, index).includes(item))
         .slice(0, 48);
       setStorage(StorageKeys.RECENTLY_VIEWED, urls)
+      API.post.updateViews(post.basicDetails.url).catch(console.error)
     }
   }, [])
 
