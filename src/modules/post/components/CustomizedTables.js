@@ -9,11 +9,11 @@ const CustomizedTable = ({details, title}) => {
 
   if (!body || !body.length) return <></>
 
-  return (<Grid item xs={12}>
-      <TableContainer component={Paper} className={classes.table}>
-        <Typography className={classes.titleBar} variant="h6">
-          {title}
-        </Typography>
+  return (<Grid item xs={12} component={Paper} variant="outlined" className={classes.table}>
+      <Typography className={classes.titleBar} variant="h6">
+        {title}
+      </Typography>
+      <TableContainer>
         <Table aria-label="customized table">
           <TableHead>
             {
@@ -34,7 +34,8 @@ const CustomizedTable = ({details, title}) => {
         </Table>
       </TableContainer>
     </Grid>
-  );
+  )
+    ;
 }
 
 export default CustomizedTable
