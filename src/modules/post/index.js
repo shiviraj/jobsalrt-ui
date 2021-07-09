@@ -32,7 +32,7 @@ const Post = ({post}) => {
 
   useEffect(() => {
     const recentlyViewed = getStorage(StorageKeys.RECENTLY_VIEWED) || []
-    if (post.basicDetails.url) {
+    if (post && post.basicDetails && post.basicDetails.url) {
       recentlyViewed.unshift(post.basicDetails.url)
       const urls = recentlyViewed.filter((item, index) => !recentlyViewed.slice(0, index).includes(item))
         .slice(0, 48);
