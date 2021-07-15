@@ -14,11 +14,11 @@ const useStyles = makeStyles((theme) => ({
   },
   gridContainer: {
     padding: theme.spacing(2),
-    width: "100vw",
+    width: "100%",
+    margin: 0,
     background: theme.palette.primary.main,
     [theme.breakpoints.down("md")]: {
       padding: theme.spacing(0),
-      margin: 0,
     }
   },
   paper: {
