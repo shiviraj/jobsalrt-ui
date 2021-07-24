@@ -25,8 +25,8 @@ const Home = ({posts}) => {
   return (
     <React.Fragment>
       <HomeMenubar/>
-      <JobsContainerWithUrls title="Trending Jobs" posts={posts["trending-jobs"]}/>
-      <JobsContainerWithUrls title="Recommended Jobs" posts={posts["recommended-jobs"]}/>
+      {/*<JobsContainerWithUrls title="Trending Jobs" posts={posts["trending-jobs"]}/>*/}
+      {/*<JobsContainerWithUrls title="Recommended Jobs" posts={posts["recommended-jobs"]}/>*/}
       <JobsContainer title="Latest Jobs" posts={posts["latest-jobs"]}/>
       <JobsContainer title="Admit Cards" posts={posts["admit-cards"]}/>
       <JobsContainer title="Results" posts={posts["results"]}/>
